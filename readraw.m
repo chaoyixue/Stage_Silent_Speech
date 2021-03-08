@@ -5,7 +5,7 @@
 %     Z=Z';
 %     k=imshow(Z);
 function readraw(rawfile_path)
-     row=1024;  col=720;
+     row=576;  col=768;
      fin=fopen(rawfile_path ,'r');
      I=fread(fin,row*col,'uint8=>uint8'); 
      Z=reshape(I,row,col);

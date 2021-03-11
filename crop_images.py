@@ -22,19 +22,20 @@ def crop_images(filepath, longeur, height_bot, height_top, width_left, width_rig
     """
     data_npy_list = []
     for index_image in tqdm(range(longeur)):
-        myimg = mpimg.imread(filepath + str(index_image+1) + ".bmp")
+        myimg = mpimg.imread(filepath + "/" + str(index_image+1) + ".bmp")
         myimg = myimg[height_bot:height_top, width_left:width_right]
         myimg = cv2.resize(myimg, (64, 64), interpolation=cv2.INTER_AREA)
         data_npy_list.append(myimg)
     img_npy = np.array(data_npy_list)
     np.save(output_name, img_npy)
-    return levre_npy
+    return img_npy
 
 
 if __name__ == "__main__":
-    img = mpimg.imread("../data_2021/ch1_en/levre/8081.bmp")
-    print(img.shape)
-    plt.figure()
-    plt.imshow(img)
-    plt.show()
-
+    # crop the levre images
+    # levre_npy = crop_images("../data_2021/ch1_en/levre", 10056, 0,390,100,650, "levre_npy.npy")
+    # print(levre_npy.shape)
+    
+    # crop the langue images
+    langue_npy =crop_images("../data_2021/ch1_en/langue", 10054, 10,220,10,280, "langue_npy.npy")
+    print(langue_npy.shape)

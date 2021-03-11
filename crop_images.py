@@ -8,6 +8,7 @@ import cv2
 
 
 def crop_images(filepath, longeur, height_bot, height_top, width_left, width_right, output_name):
+    
     """
     crop all the images in a folder and save the images as npy file
 
@@ -20,6 +21,7 @@ def crop_images(filepath, longeur, height_bot, height_top, width_left, width_rig
     :param output_name: the name of the output file npy
     :return:
     """
+    
     data_npy_list = []
     for index_image in tqdm(range(longeur)):
         myimg = mpimg.imread(filepath + "/" + str(index_image+1) + ".bmp")

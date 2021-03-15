@@ -6,10 +6,17 @@ Created on Thu Mar 11 12:27:21 2021
 """
 
 import numpy as np
-
-train_lips = np.load("../data/train_test_npy_2020/train_lips.npy")
-train_tongue = np.load("../data/train_test_npy_2020/train_tongue.npy")
-train_label = np.load("../data/train_test_npy_2020/train_label.npy")
+from matplotlib import pyplot as plt
+from tqdm import tqdm
+train_lips = np.load("levre.npy")
+train_tongue = np.load("langue.npy")
 print(train_lips.shape)
 print(train_tongue.shape)
-print(train_label.shape)
+
+plt.figure()
+for i in tqdm(range(train_lips.shape[0])):
+    plt.imshow(train_lips[i, :, :])
+    plt.pause(1)
+
+
+

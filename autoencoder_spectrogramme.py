@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     test_model.compile(optimizer=my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "autoencoder_model/weights-improvement-{epoch:02d}-{val_loss:.5f}.h5"
+    filepath = "../autoencoder_model_0317/weights-improvement-{epoch:02d}-{val_loss:.5f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 

@@ -25,14 +25,17 @@ if __name__ == "__main__":
     print(x_train.shape)
     print(x_test.shape)
     model = keras.models.load_model("autoencoder_model/weights-improvement-50-0.00.h5")
+    model.summary()
     test_result = model.predict(x_test)
+
     test_result = np.transpose(test_result)
     print(test_result.shape)
 
     # show the spectrum original and the spectrum learned
-    fig, ax = plt.subplots(nrows=2, sharex=True, sharey=True)
+    fig, ax = plt.subplots(nrows=2, sharex="True", sharey="True")
     x_test = np.transpose(x_test)
     print(test_result[:20, 5000])
+    print(test_result[:20, 4000])
     print(x_test[:20, 5000])
     img = librosa.display.specshow(librosa.amplitude_to_db(x_test,
                                                            ref=np.max),
@@ -46,7 +49,6 @@ if __name__ == "__main__":
     # test_reconstruit = librosa.griffinlim(test_result, hop_length=735, win_length=735 * 2)
 
     # sf.write("ch7_reconstruit.wav", test_reconstruit, 44100)
-
 
     """
     sound_original = librosa.load("../data/20200617_153719_RecFile_1_bruce_ch7"

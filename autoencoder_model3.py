@@ -10,16 +10,18 @@ from matplotlib import pyplot as plt
 def model_autoencodeur(encoding_dim):
     myinput = keras.Input(shape=(736,))
     # encoding parts
-    fc1 = layers.Dense(512, activation='relu')(myinput)
-    fc2 = layers.Dense(256, activation='relu')(fc1)
-    fc3 = layers.Dense(128, activation='relu')(fc2)
+    fc = layers.Dense(512, activation='relu')(myinput)
+    fc1 = layers.Dense(368, activation='relu')(fc)
+    fc2 = layers.Dense(189, activation='relu')(fc1)
+    fc3 = layers.Dense(100, activation='relu')(fc2)
     encoded = layers.Dense(encoding_dim, activation='sigmoid')(fc3)
 
     # decoding parts
-    fc4 = layers.Dense(128, activation='relu')(encoded)
-    fc5 = layers.Dense(256, activation='relu')(fc4)
-    fc6 = layers.Dense(512, activation='relu')(fc5)
-    decoded = layers.Dense(736, activation='sigmoid')(fc6)
+    fc4 = layers.Dense(100, activation='relu')(encoded)
+    fc5 = layers.Dense(189, activation='relu')(fc4)
+    fc6 = layers.Dense(368, activation='relu')(fc5)
+    fc7 = layers.Dense(512, activation='relu')(fc6)
+    decoded = layers.Dense(736, activation='sigmoid')(fc7)
     mymodel = keras.Model(myinput, decoded)
     return mymodel
 
@@ -44,7 +46,7 @@ if __name__ == "__main__":
 
     lr_schedule = keras.optimizers.schedules.ExponentialDecay(
         initial_learning_rate=1e-2,
-        decay_steps=8000,
+        decay_steps=10000,
         decay_rate=0.8)
     my_optimizer = keras.optimizers.SGD(learning_rate=lr_schedule)
 

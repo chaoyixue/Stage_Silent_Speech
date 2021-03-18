@@ -26,6 +26,7 @@ def model_autoencodeur(encoding_dim):
 if __name__ == "__main__":
     # load data
     X = np.load("spectrogrammes_all_chapitre.npy")
+
     # normalisation
     X = X/np.max(X)
     print(X.max())
@@ -54,7 +55,7 @@ if __name__ == "__main__":
 
     callbacks_list = [checkpoint]
     history = test_model.fit(x=x_train, y=x_train, batch_size=64, epochs=50, callbacks=callbacks_list,
-                             validation_split=0.2)
+                             validation_data=(x_test, x_test))
     print(history.history.keys())
     # summarize history for loss
     plt.plot(history.history['loss'])

@@ -1,3 +1,11 @@
+"""
+This program is used to find out if the error of the prediction is due to the predict function
+in test_model.py we passed the whole spectrum to predict, in this program, we passed each time
+one line of the spectrum then concatenate them.
+But there is no difference between these two methods. So the spectrum not well generated is caused
+by the model's underfitting but not caused by a bug when testing.
+"""
+
 import tensorflow as tf
 from tensorflow.keras import layers
 from tensorflow import keras
@@ -8,12 +16,14 @@ import librosa
 import soundfile as sf
 import librosa.display
 from matplotlib import pyplot as plt
+from tqdm import tqdm
 
 if __name__ == "__main__":
     # load data
     X = np.load("spectrogrammes_all_chapitre.npy")
     max_value = np.max(X)
     print(max_value)
+
     # normalisation
     X = X / max_value
     print(X.max())
@@ -26,37 +36,25 @@ if __name__ == "__main__":
     print(x_test.shape)
     model = keras.models.load_model("../weights-improvement-200-0.00011.h5")
     model.summary()
-    test_result = model.predict(x_test)
-    test_result = np.transpose(test_result)
-    print(test_result.shape)
 
-    x_test = np.transpose(x_test)
+    for i in tqdm(range(x_test.shape[0])):
+        new_time = x_test[i, :].reshape((1, 736))
+        new_result = model.predict(new_time)
+        if i == 0:
+            result = new_result
+        else:
+            result = np.concatenate((result, new_result), axis=0)
+
+    result = np.transpose(result)
     # show the spectrum original and the spectrum learned
     fig, ax = plt.subplots(nrows=2)
-
+    x_test = np.transpose(x_test)  # x_test = 736 * N
     img = librosa.display.specshow(librosa.amplitude_to_db(x_test,
                                                            ref=np.max),
                                    y_axis='log', x_axis='time', ax=ax[0])
     ax[0].set_title('Power spectrogram')
-    librosa.display.specshow(librosa.amplitude_to_db(test_result, ref=np.max),
+    librosa.display.specshow(librosa.amplitude_to_db(result, ref=np.max),
                              y_axis='log', x_axis='time', ax=ax[1])
     ax[1].set_title('spectrum learned')
     fig.colorbar(img, ax=ax, format="%+2.0f dB")
     plt.show()
-    # test_reconstruit = librosa.griffinlim(test_result, hop_length=735, win_length=735 * 2)
-
-    # sf.write("ch7_reconstruit.wav", test_reconstruit, 44100)
-
-    """
-    sound_original = librosa.load("../data/20200617_153719_RecFile_1_bruce_ch7"
-                                  "/RecFile_1_20200617_153719_Sound_Capture_DShow_5_monoOutput1.wav", sr=44100)
-    fig, ax = plt.subplots(nrows=2, sharex=False, sharey=False)
-    librosa.display.waveplot(sound_original[0], sr=44100, color='b', ax=ax[0])
-    ax[0].set(title='Original', xlabel=None)
-    ax[0].label_outer()
-    librosa.display.waveplot(test_reconstruit, sr=44100, color='r', ax=ax[1])
-    ax[1].set(title='reconstruction', xlabel=None)
-    ax[1].label_outer()
-    plt.show()
-    """
-

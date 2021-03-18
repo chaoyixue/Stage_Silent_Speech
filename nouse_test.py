@@ -1,7 +1,25 @@
 import librosa
+from tensorflow import keras
+import numpy as np
+import librosa.display
+from matplotlib import pyplot as plt
 
-sound, sample_rate = librosa.load("../data/20200617_153719_RecFile_1_bruce_ch7"
-                                  "/RecFile_1_20200617_153719_Sound_Capture_DShow_5_monoOutput1.wav", 44100)
-print(sound.shape)
-print(librosa.get_duration(filename="../data/20200617_153719_RecFile_1_bruce_ch7"
-                           "/RecFile_1_20200617_153719_Sound_Capture_DShow_5_monoOutput1.wav", sr=44100))
+if __name__ == "__main__":
+    # load data
+    X = np.load("spectrogrammes_all_chapitre.npy")
+    max_value = np.max(X)
+    print(max_value)
+    # normalisation
+    X = X / max_value
+    print(X.max())
+    print(X.min())
+
+    # split train test data
+    x_train = np.transpose(X[:, :84776 - 15951])
+    x_test = np.transpose(X[:, -15951:])
+
+    model = keras.models.load_model("../weights-improvement-200-0.00021.h5")
+    test = x_test[0].reshape(1, 736)
+    pred = model.predict(test)
+    loss = np.square(test-pred).mean(axis=None)
+    print(loss)

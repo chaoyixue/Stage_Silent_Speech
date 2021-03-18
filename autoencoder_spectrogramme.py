@@ -12,13 +12,14 @@ def model_autoencodeur(encoding_dim):
     # encoding parts
     fc1 = layers.Dense(368, activation='relu')(myinput)
     fc2 = layers.Dense(189, activation='relu')(fc1)
-    encoded = layers.Dense(encoding_dim, activation='sigmoid')(fc2)
+    fc3 = layers.Dense(100, activation='relu')(fc2)
+    encoded = layers.Dense(encoding_dim, activation='sigmoid')(fc3)
 
     # decoding parts
-    fc3 = layers.Dense(189, activation='relu')(encoded)
-    fc4 = layers.Dense(368, activation='relu')(fc3)
-    decoded = layers.Dense(736, activation='sigmoid')(fc4)
-
+    fc4 = layers.Dense(100, activation='relu')(encoded)
+    fc5 = layers.Dense(189, activation='relu')(fc4)
+    fc6 = layers.Dense(368, activation='relu')(fc5)
+    decoded = layers.Dense(736, activation='sigmoid')(fc6)
     mymodel = keras.Model(myinput, decoded)
     return mymodel
 

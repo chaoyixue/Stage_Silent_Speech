@@ -50,12 +50,12 @@ if __name__ == "__main__":
 
     test_model.compile(optimizer=my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "../autoencoder_model_0317/weights-improvement-{epoch:02d}-{val_loss:.5f}.h5"
+    filepath = "four_layers_model/weights-improvement-{epoch:02d}-{val_loss:.5f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 
     callbacks_list = [checkpoint]
-    history = test_model.fit(x=x_train, y=x_train, batch_size=64, epochs=50, callbacks=callbacks_list,
+    history = test_model.fit(x=x_train, y=x_train, batch_size=64, epochs=200, callbacks=callbacks_list,
                              validation_data=(x_test, x_test))
     print(history.history.keys())
     # summarize history for loss

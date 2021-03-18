@@ -26,7 +26,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.autoencoder_spectrogramme">
+  <component name="RunManager" selected="Python.test_model">
     <configuration name="autoencoder_spectrogramme" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -134,8 +134,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.autoencoder_spectrogramme" />
         <item itemvalue="Python.test_model" />
+        <item itemvalue="Python.autoencoder_spectrogramme" />
         <item itemvalue="Python.test_normalisation_influence_to_griffinlim" />
         <item itemvalue="Python.nouse_test" />
         <item itemvalue="Python.wavefile_preprocessing" />
@@ -154,46 +154,54 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="693" y="194" width="762" height="596" key="#xdebugger.evaluate" timestamp="1615999926489">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="693" y="194" width="762" height="596" key="#xdebugger.evaluate/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615999926489" />
+    <state width="1534" height="440" key="DebuggerActiveHint" timestamp="1615994835239">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1534" height="440" key="DebuggerActiveHint/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615994835239" />
     <state x="549" y="153" key="FileChooserDialogImpl" timestamp="1614764528267">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614764528267" />
-    <state width="1515" height="289" key="GridCell.Tab.0.bottom" timestamp="1615978090782">
+    <state width="1515" height="221" key="GridCell.Tab.0.bottom" timestamp="1616001704620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.0.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615978090782" />
+    <state width="1515" height="221" key="GridCell.Tab.0.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1616001704620" />
     <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1615826059585" />
-    <state width="1515" height="289" key="GridCell.Tab.0.center" timestamp="1615978090782">
+    <state width="1515" height="221" key="GridCell.Tab.0.center" timestamp="1616001704620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.0.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615978090782" />
+    <state width="1515" height="221" key="GridCell.Tab.0.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1616001704620" />
     <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1615826059585" />
-    <state width="1515" height="289" key="GridCell.Tab.0.left" timestamp="1615978090781">
+    <state width="1515" height="221" key="GridCell.Tab.0.left" timestamp="1616001704620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.0.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615978090781" />
+    <state width="1515" height="221" key="GridCell.Tab.0.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1616001704620" />
     <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1615826059585" />
-    <state width="1515" height="289" key="GridCell.Tab.0.right" timestamp="1615978090782">
+    <state width="1515" height="221" key="GridCell.Tab.0.right" timestamp="1616001704620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.0.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615978090782" />
+    <state width="1515" height="221" key="GridCell.Tab.0.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1616001704620" />
     <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1615826059585" />
-    <state width="1515" height="289" key="GridCell.Tab.1.bottom" timestamp="1615978086795">
+    <state width="1515" height="221" key="GridCell.Tab.1.bottom" timestamp="1616001704620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.1.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615978086795" />
-    <state width="1515" height="289" key="GridCell.Tab.1.center" timestamp="1615978086794">
+    <state width="1515" height="221" key="GridCell.Tab.1.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1616001704620" />
+    <state width="1515" height="221" key="GridCell.Tab.1.center" timestamp="1616001704620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.1.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615978086794" />
-    <state width="1515" height="289" key="GridCell.Tab.1.left" timestamp="1615978086794">
+    <state width="1515" height="221" key="GridCell.Tab.1.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1616001704620" />
+    <state width="1515" height="221" key="GridCell.Tab.1.left" timestamp="1616001704620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.1.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615978086794" />
-    <state width="1515" height="289" key="GridCell.Tab.1.right" timestamp="1615978086794">
+    <state width="1515" height="221" key="GridCell.Tab.1.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1616001704620" />
+    <state width="1515" height="221" key="GridCell.Tab.1.right" timestamp="1616001704620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.1.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615978086794" />
+    <state width="1515" height="221" key="GridCell.Tab.1.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1616001704620" />
     <state x="270" y="74" key="SettingsEditor" timestamp="1615820864301">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -202,16 +210,5 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="414" y="146" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615901556701" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/autoencoder_spectrogramme.py</url>
-          <line>42</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

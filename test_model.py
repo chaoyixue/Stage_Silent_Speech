@@ -24,13 +24,11 @@ if __name__ == "__main__":
     x_test = np.transpose(X[:, -15951:])
     print(x_train.shape)
     print(x_test.shape)
-    model = keras.models.load_model("autoencoder_model/weights-improvement-50-0.00.h5")
+    model = keras.models.load_model("../autoencoder_model_0316/weights-improvement-50-0.00.h5")
     model.summary()
     test_result = model.predict(x_test)
-
     test_result = np.transpose(test_result)
     print(test_result.shape)
-
     # show the spectrum original and the spectrum learned
     fig, ax = plt.subplots(nrows=2, sharex="True", sharey="True")
     x_test = np.transpose(x_test)

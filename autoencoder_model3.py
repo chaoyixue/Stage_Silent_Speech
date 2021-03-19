@@ -44,11 +44,7 @@ if __name__ == "__main__":
     test_model = model_autoencodeur(encoding_dim=30)
     test_model.summary()
 
-    lr_schedule = keras.optimizers.schedules.ExponentialDecay(
-        initial_learning_rate=1e-2,
-        decay_steps=10000,
-        decay_rate=0.8)
-    my_optimizer = keras.optimizers.SGD(learning_rate=lr_schedule)
+    my_optimizer = keras.optimizers.Adam(learning_rate=0.001, epsilon=1e-8)
 
     test_model.compile(optimizer=my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 

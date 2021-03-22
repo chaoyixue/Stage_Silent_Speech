@@ -44,11 +44,11 @@ if __name__ == "__main__":
     test_model = model_autoencodeur(encoding_dim=30)
     test_model.summary()
 
-    my_optimizer = keras.optimizers.Adam(learning_rate=0.001, epsilon=1e-8)
+    my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-8)
 
     test_model.compile(optimizer=my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "four_layers_model/weights-improvement-{epoch:02d}-{val_loss:.5f}.h5"
+    filepath = "../model3_adam/weights-improvement-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 

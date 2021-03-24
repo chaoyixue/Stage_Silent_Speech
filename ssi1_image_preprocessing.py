@@ -29,7 +29,7 @@ for i in tqdm(range(1, 68146+1)):  #
         # # tongue = tongue[10:220,10:280,:] #parole1
         # # tongue = tongue[30:200,50:250,:] #parole2
         tongue = tongue[40:200, 70:250, :]  # parole3,parole4,parole5
-        tongue = cv2.resize(tongue,(64,64), interpolation=cv2.INTER_AREA)  # redimentionner à 64 * 64
+        tongue = cv2.resize(tongue, (64, 64), interpolation=cv2.INTER_AREA)  # redimentionner à 64 * 64
         cv2.imwrite("./ssi/data/out/resize_tongue/%s.tif" % name, tongue)  # rewrtie to files with format tif
     except:
         print(i, name)

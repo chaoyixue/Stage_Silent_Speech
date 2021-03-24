@@ -34,11 +34,10 @@ def crop_images(filepath, longeur, height_bot, height_top, width_left, width_rig
 
 
 if __name__ == "__main__":
-    pass
     # crop the levre images
-    # levre_npy = crop_images("../data_2021/ch1_en/levre", 10056, 0,390,100,650, "levre_npy.npy")
-    # print(levre_npy.shape)
+    levre_npy = crop_images("../data_2021/ch7_en/levre", 15951, 0, 450, 100, 650, "lip_ch7.npy")
+    print(levre_npy.shape)
     
     # crop the langue images
-    # langue_npy = crop_images("../data_2021/ch1_en/langue", 10054, 10,220,10,280, "langue_npy.npy")
-    # print(langue_npy.shape)
+    langue_npy = crop_images("../data_2021/ch7_en/langue", 15951, 10, 220, 10, 280, "tongue_ch7.npy")
+    print(langue_npy.shape)

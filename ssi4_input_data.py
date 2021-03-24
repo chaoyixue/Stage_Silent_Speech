@@ -83,7 +83,7 @@ def _generate_audio_Lable(dir_path=root2):
 	magnitude.extend(spec.T)
 
 	train_label, test_label = [], []
-	train_label.extend(magnitude[:61331-i+1])	# song: 61331, parole4: 76211
+	train_label.extend(magnitude[:61331-i+1])  # song: 61331, parole4: 76211
 	test_label.extend(magnitude[61331:])
 	
 	# train_label.extend(magnitude[14793:]) 	# parole5

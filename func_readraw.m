@@ -13,7 +13,7 @@ function img = func_readraw(filepath, img_type)
             img = reshape(I,row,col);
             img = img';
             % k=imshow(img);
-            path_bmp = strcat("../data_2021/ch6_en/levre/", int2str(i), ".bmp");
+            path_bmp = strcat("../data_2021/ch7_en/levre/", int2str(i), ".bmp");
             imwrite(img, path_bmp)
             i=i+1
         end
@@ -29,7 +29,7 @@ function img = func_readraw(filepath, img_type)
             img = reshape(I,row,col);
             img = img';
             % k=imshow(img);
-            path_bmp = strcat("../data_2021/ch6_en/langue/", int2str(i), ".bmp");
+            path_bmp = strcat("../data_2021/ch7_en/langue/", int2str(i), ".bmp");
             imwrite(img, path_bmp)
             i=i+1
         end

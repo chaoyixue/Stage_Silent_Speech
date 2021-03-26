@@ -6,24 +6,34 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow.keras import optimizers
 from matplotlib import pyplot as plt
 from tensorflow.keras import Input
-from tensorflow.keras.layers import Dense, Conv2D, AveragePooling2D, concatenate, Flatten
+from tensorflow.keras.layers import Dense, Conv2D, AveragePooling2D, concatenate, Flatten, MaxPooling2D, BatchNormalization
 from tensorflow.keras.models import Model
 
 
 def two_input_one_output_model():
     input_lips = Input(shape=(64, 64, 1))
-    lips_conv1 = Conv2D(6, (5, 5), padding="same", activation="relu")(input_lips)
-    lips_pooling1 = AveragePooling2D()(lips_conv1)
-    lips_conv2 = Conv2D(16, (5, 5), padding="valid", activation="relu")(lips_pooling1)
-    lips_pooling2 = AveragePooling2D()(lips_conv2)
+    lips_conv1 = Conv2D(16, (3, 3), padding="same", activation="relu")(input_lips)
+    lips_conv2 = Conv2D(16, (3, 3), padding="same", activation="relu")(lips_conv1)
+    lips_pooling1 = MaxPooling2D(pool_size=(2, 2))(lips_conv2)
+    lips_conv3 = Conv2D(32, (3, 3), padding="same", activation="relu")(lips_pooling1)
+    lips_conv4 = Conv2D(32, (3, 3), padding="same", activation="relu")(lips_conv3)
+    lips_pooling2 = MaxPooling2D(pool_size=(2, 2))(lips_conv4)
+    lips_conv5 = Conv2D(64, (3, 3), padding="same", activation="relu")(lips_pooling2)
+    lips_conv6 = Conv2D(64, (3, 3), padding="same", activation="relu")(lips_conv5)
+    lips_pooling3 = MaxPooling2D(pool_size=(2, 2))(lips_conv6)
 
     input_tongues = Input(shape=(64, 64, 1))
-    tongues_conv1 = Conv2D(6, (5, 5), padding="same", activation="relu")(input_tongues)
-    tongues_pooling1 = AveragePooling2D()(tongues_conv1)
-    tongues_conv2 = Conv2D(16, (5, 5), padding="valid", activation="relu")(tongues_pooling1)
-    tongues_pooling2 = AveragePooling2D()(tongues_conv2)
+    tongues_conv1 = Conv2D(16, (3, 3), padding="same", activation="relu")(input_tongues)
+    tongues_conv2 = Conv2D(16, (3, 3), padding="same", activation="relu")(tongues_conv1)
+    tongues_pooling1 = MaxPooling2D(pool_size=(2, 2))(tongues_conv2)
+    tongues_conv3 = Conv2D(32, (3, 3), padding="same", activation="relu")(tongues_pooling1)
+    tongues_conv4 = Conv2D(32, (3, 3), padding="same", activation="relu")(tongues_conv3)
+    tongues_pooling2 = MaxPooling2D(pool_size=(2, 2))(tongues_conv4)
+    tongues_conv5 = Conv2D(64, (3, 3), padding="same", activation="relu")(tongues_pooling2)
+    tongues_conv6 = Conv2D(64, (3, 3), padding="same", activation="relu")(tongues_conv5)
+    tongues_pooling3 = MaxPooling2D(pool_size=(2, 2))(tongues_conv6)
 
-    cc = concatenate([lips_pooling2, tongues_pooling2])
+    cc = concatenate([lips_pooling3, tongues_pooling3])
     flat_layer = Flatten()(cc)
     fc1 = Dense(1024, activation="relu")(flat_layer)
     fc2 = Dense(736, activation="sigmoid")(fc1)
@@ -54,12 +64,12 @@ if __name__ == "__main__":
     y_train = np.transpose(y_train)
     y_test = np.transpose(y_test)
 
-    test_model = two_input_one_output_model() 
+    test_model = two_input_one_output_model()
     test_model.summary()
-    my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-7)
+    my_optimizer = keras.optimizers.Adam(learning_rate=0.00001, epsilon=1e-8)
     test_model.compile(my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "../ssi_model1/weights-improvement-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "../ssi_model2/weights-improvement-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 

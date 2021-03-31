@@ -99,7 +99,7 @@ if __name__ == "__main__":
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-8)
     test_model.compile(my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "ssi_model4/weights-improvement-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "ssi_model5_linear/weights-improvement-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 

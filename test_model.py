@@ -1,3 +1,9 @@
+"""
+This file is used to test the autoencoder model trained to check out if it generates a spectrum correct.
+By using griffin lim, test if  the wav file reconstructed is clair.
+
+"""
+
 import tensorflow as tf
 from tensorflow.keras import layers
 from tensorflow import keras
@@ -55,9 +61,12 @@ if __name__ == "__main__":
     """
     reconstruction of the signal and save it into a wav file
     """
+    # denormalisation
+    test_result = test_result * max_value
+    # reconstruction using griffin lim
     test_reconstruit = librosa.griffinlim(test_result, hop_length=735, win_length=735 * 2)
 
-    # sf.write("ch7_reconstruit.wav", test_reconstruit, 44100)
+    sf.write("ch7_reconstruit.wav", test_reconstruit, 44100)
 
     ####################################################################################################################
     """

@@ -6,7 +6,7 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow.keras import optimizers
 from matplotlib import pyplot as plt
 from tensorflow.keras import Input
-from tensorflow.keras.layers import Dense, Conv2D, AveragePooling2D, concatenate, Flatten
+from tensorflow.keras.layers import Dense, Conv2D, AveragePooling2D, concatenate, Flatten, BatchNormalization
 from tensorflow.keras.models import Model
 
 
@@ -14,21 +14,27 @@ def two_input_one_output_model():
     input_lips = Input(shape=(64, 64, 1))
     lips_conv1 = Conv2D(6, (5, 5), padding="same", activation="relu")(input_lips)
     lips_pooling1 = AveragePooling2D()(lips_conv1)
-    lips_conv2 = Conv2D(16, (5, 5), padding="valid", activation="relu")(lips_pooling1)
+    lips_bn1 = BatchNormalization()(lips_pooling1)
+    lips_conv2 = Conv2D(16, (5, 5), padding="valid", activation="relu")(lips_bn1)
     lips_pooling2 = AveragePooling2D()(lips_conv2)
-    lips_conv3 = Conv2D(32, (3, 3), padding="same", activation="relu")(lips_pooling2)
+    lips_bn2 = BatchNormalization()(lips_pooling2)
+    lips_conv3 = Conv2D(32, (3, 3), padding="same", activation="relu")(lips_bn2)
     lips_pooling3 = AveragePooling2D()(lips_conv3)
-    lips_conv4 = Conv2D(64, (3, 3), padding="same", activation="relu")(lips_pooling3)
+    lips_bn3 = BatchNormalization()(lips_pooling3)
+    lips_conv4 = Conv2D(64, (3, 3), padding="same", activation="relu")(lips_bn3)
     lips_pooling4 = AveragePooling2D()(lips_conv4)
 
     input_tongues = Input(shape=(64, 64, 1))
     tongues_conv1 = Conv2D(6, (5, 5), padding="same", activation="relu")(input_tongues)
     tongues_pooling1 = AveragePooling2D()(tongues_conv1)
-    tongues_conv2 = Conv2D(16, (5, 5), padding="valid", activation="relu")(tongues_pooling1)
+    tongues_bn1 = BatchNormalization()(tongues_pooling1)
+    tongues_conv2 = Conv2D(16, (5, 5), padding="valid", activation="relu")(tongues_bn1)
     tongues_pooling2 = AveragePooling2D()(tongues_conv2)
-    tongues_conv3 = Conv2D(32, (3, 3), padding="same", activation="relu")(tongues_pooling2)
+    tongues_bn2 = BatchNormalization()(tongues_pooling2)
+    tongues_conv3 = Conv2D(32, (3, 3), padding="same", activation="relu")(tongues_bn2)
     tongues_pooling3 = AveragePooling2D()(tongues_conv3)
-    tongues_conv4 = Conv2D(64, (3, 3), padding="same", activation="relu")(tongues_pooling3)
+    tongues_bn3 = BatchNormalization()(tongues_pooling3)
+    tongues_conv4 = Conv2D(64, (3, 3), padding="same", activation="relu")(tongues_bn3)
     tongues_pooling4 = AveragePooling2D()(tongues_conv4)
 
     cc = concatenate([lips_pooling4, tongues_pooling4])

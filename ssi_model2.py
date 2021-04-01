@@ -18,6 +18,8 @@ def two_input_one_output_model():
     lips_pooling2 = AveragePooling2D()(lips_conv2)
     lips_conv3 = Conv2D(32, (3, 3), padding="same", activation="relu")(lips_pooling2)
     lips_pooling3 = AveragePooling2D()(lips_conv3)
+    lips_conv4 = Conv2D(64, (3, 3), padding="same", activation="relu")(lips_pooling3)
+    lips_pooling4 = AveragePooling2D()(lips_conv4)
 
     input_tongues = Input(shape=(64, 64, 1))
     tongues_conv1 = Conv2D(6, (5, 5), padding="same", activation="relu")(input_tongues)
@@ -26,8 +28,10 @@ def two_input_one_output_model():
     tongues_pooling2 = AveragePooling2D()(tongues_conv2)
     tongues_conv3 = Conv2D(32, (3, 3), padding="same", activation="relu")(tongues_pooling2)
     tongues_pooling3 = AveragePooling2D()(tongues_conv3)
+    tongues_conv4 = Conv2D(64, (3, 3), padding="same", activation="relu")(tongues_pooling3)
+    tongues_pooling4 = AveragePooling2D()(tongues_conv4)
 
-    cc = concatenate([lips_pooling3, tongues_pooling3])
+    cc = concatenate([lips_pooling4, tongues_pooling4])
     flat_layer = Flatten()(cc)
     fc1 = Dense(1024, activation="relu")(flat_layer)
     fc2 = Dense(736, activation="linear")(fc1)

@@ -31,7 +31,7 @@ if __name__ == "__main__":
     y_train = np.transpose(y_train)
     y_test = np.transpose(y_test)
 
-    model = keras.models.load_model("../ssi_model2/weights-improvement-25-0.00005190.h5")
+    model = keras.models.load_model("../ssi_model1_val_loss-0.00004934.h5")
     test_result = model.predict([lips_x_test, tongues_x_test])
     result = np.transpose(test_result)
 

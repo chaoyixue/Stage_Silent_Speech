@@ -44,7 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.test_model">
+  <component name="RunManager" selected="Python.test_ssi_model">
     <configuration name="ssi_model2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -152,11 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_ssi_model" />
         <item itemvalue="Python.test_model" />
         <item itemvalue="Python.ssi_model3" />
         <item itemvalue="Python.ssi_model2_version" />
         <item itemvalue="Python.ssi_model2" />
-        <item itemvalue="Python.test_ssi_model" />
       </list>
     </recent_temporary>
   </component>

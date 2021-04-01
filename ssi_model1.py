@@ -26,7 +26,7 @@ def two_input_one_output_model():
     cc = concatenate([lips_pooling2, tongues_pooling2])
     flat_layer = Flatten()(cc)
     fc1 = Dense(1024, activation="relu")(flat_layer)
-    fc2 = Dense(736, activation="sigmoid")(fc1)
+    fc2 = Dense(736, activation="linear")(fc1)
 
     mymodel = Model([input_lips, input_tongues], fc2)
     return mymodel

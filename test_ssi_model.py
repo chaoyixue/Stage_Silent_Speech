@@ -35,6 +35,10 @@ if __name__ == "__main__":
     test_result = model.predict([lips_x_test, tongues_x_test])
     result = np.transpose(test_result)
 
+    result = result * max_spectrum
+    test_reconstruit = librosa.griffinlim(result, hop_length=735, win_length=735 * 2)
+    sf.write("ch7_reconstructed_by_images.wav", test_reconstruit, 44100)
+    """
     fig, ax = plt.subplots(nrows=2)
     img = librosa.display.specshow(librosa.amplitude_to_db(np.transpose(y_test),
                                                            ref=np.max), sr=44100, hop_length=735,
@@ -44,4 +48,19 @@ if __name__ == "__main__":
                              y_axis='log', x_axis='time', ax=ax[1])
     ax[1].set_title('spectrum learned')
     fig.colorbar(img, ax=ax, format="%+2.0f dB")
+    plt.show()
+    """
+    sound_original = librosa.load("../data/20200617_153719_RecFile_1_bruce_ch7"
+                                  "/RecFile_1_20200617_153719_Sound_Capture_DShow_5_monoOutput1.wav", sr=44100)
+    fig, ax = plt.subplots(nrows=2)
+    librosa.display.waveplot(sound_original[0], sr=44100, color='b', ax=ax[0])
+    ax[0].set(title='Original', xlabel=None)
+    ax[0].label_outer()
+    ax[0].set_xlabel("time")
+    ax[0].set_ylabel("Amplitude V")
+    librosa.display.waveplot(test_reconstruit, sr=44100, color='r', ax=ax[1])
+    ax[1].set(title='reconstruction', xlabel=None)
+    ax[1].label_outer()
+    ax[1].set_xlabel("time")
+    ax[1].set_ylabel("Amplitude V")
     plt.show()

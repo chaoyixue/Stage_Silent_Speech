@@ -38,9 +38,9 @@ def ssi_model_9():
 
 if __name__ == "__main__":
     # load data
-    X_lips = np.load("../five_recurrent_image_npy/lips/lips_recurrent_5images_all_chapitres.npy")
-    X_tongues = np.load("../five_recurrent_image_npy/tongues/tongues_recurrent_5images_all_chapitres.npy")
-    Y = np.load("../five_recurrent_image_npy/spectrum_recurrent_all.npy")
+    X_lips = np.load("data_five_recurrent/lips_recurrent_5images_all_chapitres.npy")
+    X_tongues = np.load("data_five_recurrent/tongues_recurrent_5images_all_chapitres.npy")
+    Y = np.load("data_five_recurrent/spectrum_recurrent_all.npy")
 
     # normalisation
     X_lips = X_lips / 255.0

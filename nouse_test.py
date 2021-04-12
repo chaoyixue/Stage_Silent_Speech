@@ -8,8 +8,9 @@ import os
 import matplotlib.image as mpimg
 
 if __name__ == "__main__":
-    test = np.load("../five_recurrent_image_npy/tongues/tongues_recurrent_5images_all_chapitres.npy")
+    test = np.load("../data_npy_one_image/tongues_all_chapiters.npy")
     print(test.shape)
     plt.figure()
-    plt.imshow(test[1000, 1, :, :, 0], cmap="gray")
-    plt.show()
+    for i in tqdm(range(len(test))):
+        plt.imshow(test[i,:, :, 0], cmap="gray")
+        plt.pause(0.001)

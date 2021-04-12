@@ -44,7 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.spectrum_reshape_5_recurrent">
+  <component name="RunManager" selected="Python.test_ssi_model">
     <configuration name="nouse_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -58,27 +58,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nouse_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="reshape_images_npy" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Stage_Silent_Speech" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reshape_images_npy.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -108,7 +87,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ssi_model7_24images" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="ssi_model8" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -120,7 +99,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ssi_model7_24images.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ssi_model8.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -129,7 +108,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_model_five_image" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_ssi_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -141,7 +120,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_model_five_image.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_ssi_model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_ssi_recurrent" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Stage_Silent_Speech" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_ssi_recurrent.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -152,11 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.spectrum_reshape_5_recurrent" />
+        <item itemvalue="Python.test_ssi_model" />
         <item itemvalue="Python.nouse_test" />
-        <item itemvalue="Python.reshape_images_npy" />
-        <item itemvalue="Python.test_model_five_image" />
-        <item itemvalue="Python.ssi_model7_24images" />
+        <item itemvalue="Python.test_ssi_recurrent" />
+        <item itemvalue="Python.ssi_model8" />
+        <item itemvalue="Python.spectrum_reshape_5_recurrent" />
       </list>
     </recent_temporary>
   </component>
@@ -197,26 +197,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614764528267" />
-    <state width="1515" height="206" key="GridCell.Tab.0.bottom" timestamp="1617896480465">
+    <state width="1515" height="265" key="GridCell.Tab.0.bottom" timestamp="1617962346327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="167" key="GridCell.Tab.0.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1617293835143" />
-    <state width="1515" height="206" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1617896480465" />
-    <state width="1515" height="206" key="GridCell.Tab.0.center" timestamp="1617896480465">
+    <state width="1515" height="265" key="GridCell.Tab.0.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1617962346327" />
+    <state width="1515" height="265" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1617959522404" />
+    <state width="1515" height="265" key="GridCell.Tab.0.center" timestamp="1617962346327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="167" key="GridCell.Tab.0.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1617293835143" />
-    <state width="1515" height="206" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1617896480465" />
-    <state width="1515" height="206" key="GridCell.Tab.0.left" timestamp="1617896480465">
+    <state width="1515" height="265" key="GridCell.Tab.0.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1617962346327" />
+    <state width="1515" height="265" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1617959522404" />
+    <state width="1515" height="265" key="GridCell.Tab.0.left" timestamp="1617962346327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="167" key="GridCell.Tab.0.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1617293835143" />
-    <state width="1515" height="206" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1617896480465" />
-    <state width="1515" height="206" key="GridCell.Tab.0.right" timestamp="1617896480465">
+    <state width="1515" height="265" key="GridCell.Tab.0.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1617962346327" />
+    <state width="1515" height="265" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1617959522404" />
+    <state width="1515" height="265" key="GridCell.Tab.0.right" timestamp="1617962346327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="167" key="GridCell.Tab.0.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1617293835143" />
-    <state width="1515" height="206" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1617896480465" />
+    <state width="1515" height="265" key="GridCell.Tab.0.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1617962346327" />
+    <state width="1515" height="265" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1617959522404" />
     <state width="1515" height="229" key="GridCell.Tab.1.bottom" timestamp="1617896468895">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

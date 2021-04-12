@@ -11,9 +11,9 @@ from matplotlib import pyplot as plt
 
 if __name__ == "__main__":
     # load data
-    X_lips = np.load("lips_all_chapiters.npy")
-    X_tongues = np.load("tongues_all_chapiters.npy")
-    Y = np.load("spectrogrammes_all_chapitre_corresponding.npy")
+    X_lips = np.load("../data_npy_one_image/lips_all_chapiters.npy")
+    X_tongues = np.load("../data_npy_one_image/tongues_all_chapiters.npy")
+    Y = np.load("../data_npy_one_image/spectrogrammes_all_chapitre_corresponding.npy")
 
     # normalisation
     X_lips = X_lips / 255.0
@@ -36,19 +36,23 @@ if __name__ == "__main__":
     result = np.transpose(test_result)
 
     result = result * max_spectrum
+    """
     test_reconstruit = librosa.griffinlim(result, hop_length=735, win_length=735 * 2)
     sf.write("ch7_reconstructed_by_images.wav", test_reconstruit, 44100)
     """
+
     fig, ax = plt.subplots(nrows=2)
     img = librosa.display.specshow(librosa.amplitude_to_db(np.transpose(y_test),
                                                            ref=np.max), sr=44100, hop_length=735,
-                                   y_axis='log', x_axis='time', ax=ax[0])
+                                   y_axis='linear', x_axis='time', ax=ax[0])
     ax[0].set_title('original spectrum')
     librosa.display.specshow(librosa.amplitude_to_db(result, ref=np.max), sr=44100, hop_length=735,
-                             y_axis='log', x_axis='time', ax=ax[1])
+                             y_axis='linear', x_axis='time', ax=ax[1])
     ax[1].set_title('spectrum learned')
     fig.colorbar(img, ax=ax, format="%+2.0f dB")
     plt.show()
+
+
     """
     sound_original = librosa.load("../data/20200617_153719_RecFile_1_bruce_ch7"
                                   "/RecFile_1_20200617_153719_Sound_Capture_DShow_5_monoOutput1.wav", sr=44100)
@@ -64,3 +68,4 @@ if __name__ == "__main__":
     ax[1].set_xlabel("time")
     ax[1].set_ylabel("Amplitude V")
     plt.show()
+    """

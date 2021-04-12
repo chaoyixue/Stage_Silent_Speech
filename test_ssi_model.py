@@ -52,7 +52,6 @@ if __name__ == "__main__":
     fig.colorbar(img, ax=ax, format="%+2.0f dB")
     plt.show()
 
-
     """
     sound_original = librosa.load("../data/20200617_153719_RecFile_1_bruce_ch7"
                                   "/RecFile_1_20200617_153719_Sound_Capture_DShow_5_monoOutput1.wav", sr=44100)

@@ -36,8 +36,10 @@ if __name__ == "__main__":
     result = np.transpose(test_result)
     print(result.shape)
 
+    # denormalisation
     result = result * max_spectrum
 
+    """
     fig, ax = plt.subplots(nrows=2)
     img = librosa.display.specshow(librosa.amplitude_to_db(np.transpose(y_test),
                                                            ref=np.max), sr=44100, hop_length=735,
@@ -48,3 +50,8 @@ if __name__ == "__main__":
     ax[1].set_title('spectrum learned')
     fig.colorbar(img, ax=ax, format="%+2.0f dB")
     plt.show()
+    """
+
+    # reconstruction wav file
+    test_reconstruit = librosa.griffinlim(result, n_iter=128, hop_length=735, win_length=735 * 2)
+    sf.write("ch7_reccurent_5_images.wav", test_reconstruit, 44100)

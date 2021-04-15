@@ -30,7 +30,7 @@ if __name__ == "__main__":
     y_train = np.transpose(y_train)
     y_test = np.transpose(y_test)
 
-    model = keras.models.load_model("../results/ssi_model10-15-0.00004934.h5")
+    model = keras.models.load_model("../ssi_model11_generator/ssi_model11-13-0.00003391.h5")
     model.summary()
     test_result = model.predict([lips_x_test, tongues_x_test])
 
@@ -53,4 +53,5 @@ if __name__ == "__main__":
     # reconstruction wav file
     test_reconstruit = librosa.griffinlim(result, n_iter=128, hop_length=735, win_length=735 * 2)
     sf.write("ch7_v_0414_model10_4934e5.wav", test_reconstruit, 44100)
+
     plt.show()

@@ -13,44 +13,39 @@ from tensorflow.keras.models import Model
 
 def ssi_model_11():
     input_lips = Input(shape=(5, 64, 64, 1))
-    lips_conv1 = Conv2D(16, (5, 5), padding="same", activation="relu")
-    lips_tm1 = TimeDistributed(lips_conv1)(input_lips)
-    lips_pooling1 = TimeDistributed(AveragePooling2D())(lips_tm1)
-    lips_bn1 = BatchNormalization()(lips_pooling1)
-    lips_conv2 = Conv2D(32, (5, 5), padding="valid", activation="relu")
-    lips_tm2 = TimeDistributed(lips_conv2)(lips_bn1)
-    lips_pooling2 = TimeDistributed(AveragePooling2D())(lips_tm2)
-    lips_bn2 = BatchNormalization()(lips_pooling2)
-    lips_conv3 = Conv2D(64, (5, 5), padding="same", activation="relu")
-    lips_tm3 = TimeDistributed(lips_conv3)(lips_bn2)
-    lips_pooling3 = TimeDistributed(AveragePooling2D())(lips_tm3)
+    lips_conv1_1 = TimeDistributed(Conv2D(16, (3, 3), padding="same", activation="relu"))(input_lips)
+    lips_conv1_2 = TimeDistributed(Conv2D(16, (3, 3), padding="same", activation="relu"))(lips_conv1_1)
+    lips_pooling1 = TimeDistributed(MaxPooling2D(pool_size=(2, 2)))(lips_conv1_2)
+    lips_conv2_1 = TimeDistributed(Conv2D(32, (3, 3), padding="same", activation="relu"))(lips_pooling1)
+    lips_conv2_2 = TimeDistributed(Conv2D(32, (3, 3), padding="same", activation="relu"))(lips_conv2_1)
+    lips_pooling2 = TimeDistributed(MaxPooling2D(pool_size=(2, 2)))(lips_conv2_2)
+    lips_conv3_1 = TimeDistributed(Conv2D(64, (3, 3), padding="same", activation="relu"))(lips_pooling2)
+    lips_conv3_2 = TimeDistributed(Conv2D(64, (3, 3), padding="same", activation="relu"))(lips_conv3_1)
+    lips_pooling3 = TimeDistributed(MaxPooling2D(pool_size=(2, 2)))(lips_conv3_2)
 
     input_tongues = Input(shape=(5, 64, 64, 1))
-    tongues_conv1 = Conv2D(16, (5, 5), padding="same", activation="relu")
-    tongues_tm1 = TimeDistributed(tongues_conv1)(input_tongues)
-    tongues_pooling1 = TimeDistributed(AveragePooling2D())(tongues_tm1)
-    tongues_bn1 = BatchNormalization()(tongues_pooling1)
-    tongues_conv2 = Conv2D(32, (5, 5), padding="valid", activation="relu")
-    tongues_tm2 = TimeDistributed(tongues_conv2)(tongues_bn1)
-    tongues_pooling2 = TimeDistributed(AveragePooling2D())(tongues_tm2)
-    tongues_bn2 = BatchNormalization()(tongues_pooling2)
-    tongues_conv3 = Conv2D(64, (5, 5), padding="same", activation="relu")
-    tongues_tm3 = TimeDistributed(tongues_conv3)(tongues_bn2)
-    tongues_pooling3 = TimeDistributed(AveragePooling2D())(tongues_tm3)
+    tongues_conv1_1 = TimeDistributed(Conv2D(16, (3, 3), padding="same", activation="relu"))(input_tongues)
+    tongues_conv1_2 = TimeDistributed(Conv2D(16, (3, 3), padding="same", activation="relu"))(tongues_conv1_1)
+    tongues_pooling1 = TimeDistributed(MaxPooling2D(pool_size=(2, 2)))(tongues_conv1_2)
+    tongues_conv2_1 = TimeDistributed(Conv2D(32, (3, 3), padding="same", activation="relu"))(tongues_pooling1)
+    tongues_conv2_2 = TimeDistributed(Conv2D(32, (3, 3), padding="same", activation="relu"))(tongues_conv2_1)
+    tongues_pooling2 = TimeDistributed(MaxPooling2D(pool_size=(2, 2)))(tongues_conv2_2)
+    tongues_conv3_1 = TimeDistributed(Conv2D(64, (3, 3), padding="same", activation="relu"))(tongues_pooling2)
+    tongues_conv3_2 = TimeDistributed(Conv2D(64, (3, 3), padding="same", activation="relu"))(tongues_conv3_1)
+    tongues_pooling3 = TimeDistributed(MaxPooling2D(pool_size=(2, 2)))(tongues_conv3_2)
 
     cc = concatenate([lips_pooling3, tongues_pooling3])
     flat_layer = Flatten()(cc)
     fc1 = Dense(736, activation="linear")(flat_layer)
-
     mymodel = Model([input_lips, input_tongues], fc1)
     return mymodel
 
 
-if __name__ == "__main__":
+def organize_data_ch7_validation():
     # load data
-    X_lips = np.load("data_five_recurrent/lips_recurrent_5images_all_chapitres.npy")
-    X_tongues = np.load("data_five_recurrent/tongues_recurrent_5images_all_chapitres.npy")
-    Y = np.load("data_five_recurrent/spectrum_recurrent_all.npy")
+    X_lips = np.load("../data_five_recurrent/lips_recurrent_5images_all_chapitres.npy")
+    X_tongues = np.load("../data_five_recurrent/tongues_recurrent_5images_all_chapitres.npy")
+    Y = np.load("../data_five_recurrent/spectrum_recurrent_all.npy")
 
     # normalisation
     X_lips = X_lips / 255.0
@@ -68,12 +63,17 @@ if __name__ == "__main__":
     y_train = np.transpose(y_train)
     y_test = np.transpose(y_test)
 
+    return lips_x_train, lips_x_test, tongues_x_train, tongues_x_test, y_train, y_test
+
+
+if __name__ == "__main__":
+    lips_x_train, lips_x_test, tongues_x_train, tongues_x_test, y_train, y_test = organize_data_ch7_validation()
     test_model = ssi_model_11()
     test_model.summary()
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-7)
     test_model.compile(my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "ssi_model11/ssi_model10-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "../ssi_model11/ssi_model11-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 

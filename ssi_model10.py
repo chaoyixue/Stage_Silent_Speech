@@ -13,22 +13,26 @@ from tensorflow.keras.models import Model
 
 def ssi_model_9():
     input_lips = Input(shape=(5, 64, 64, 1))
-    lips_conv1 = Conv2D(6, (5, 5), padding="same", activation="relu")
+    lips_conv1 = Conv2D(16, (5, 5), padding="same", activation="relu")
     lips_tm1 = TimeDistributed(lips_conv1)(input_lips)
     lips_pooling1 = TimeDistributed(AveragePooling2D())(lips_tm1)
-    lips_conv2 = Conv2D(16, (5, 5), padding="valid", activation="relu")
+    # lips_bn1 = BatchNormalization()(lips_pooling1)
+    lips_conv2 = Conv2D(32, (5, 5), padding="valid", activation="relu")
     lips_tm2 = TimeDistributed(lips_conv2)(lips_pooling1)
     lips_pooling2 = TimeDistributed(AveragePooling2D())(lips_tm2)
+    lips_dr1 = Dropout(0.5)(lips_pooling2)
 
     input_tongues = Input(shape=(5, 64, 64, 1))
-    tongues_conv1 = Conv2D(6, (5, 5), padding="same", activation="relu")
+    tongues_conv1 = Conv2D(16, (5, 5), padding="same", activation="relu")
     tongues_tm1 = TimeDistributed(tongues_conv1)(input_tongues)
     tongues_pooling1 = TimeDistributed(AveragePooling2D())(tongues_tm1)
-    tongues_conv2 = Conv2D(16, (5, 5), padding="valid", activation="relu")
+    # tongues_bn1 = BatchNormalization()(tongues_pooling1)
+    tongues_conv2 = Conv2D(32, (5, 5), padding="valid", activation="relu")
     tongues_tm2 = TimeDistributed(tongues_conv2)(tongues_pooling1)
     tongues_pooling2 = TimeDistributed(AveragePooling2D())(tongues_tm2)
+    tongues_dr1 = Dropout(0.5)(tongues_pooling2)
 
-    cc = concatenate([lips_pooling2, tongues_pooling2])
+    cc = concatenate([lips_dr1, tongues_dr1])
     flat_layer = Flatten()(cc)
     fc1 = Dense(736, activation="linear")(flat_layer)
 
@@ -38,9 +42,9 @@ def ssi_model_9():
 
 if __name__ == "__main__":
     # load data
-    X_lips = np.load("data_five_recurrent/lips_recurrent_5images_all_chapitres.npy")
-    X_tongues = np.load("data_five_recurrent/tongues_recurrent_5images_all_chapitres.npy")
-    Y = np.load("data_five_recurrent/spectrum_recurrent_all.npy")
+    X_lips = np.load("../data_five_recurrent/lips_recurrent_5images_all_chapitres.npy")
+    X_tongues = np.load("../data_five_recurrent/tongues_recurrent_5images_all_chapitres.npy")
+    Y = np.load("../data_five_recurrent/spectrum_recurrent_all.npy")
 
     # normalisation
     X_lips = X_lips / 255.0
@@ -63,7 +67,7 @@ if __name__ == "__main__":
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-7)
     test_model.compile(my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "ssi_model10/ssi_model10-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "../ssi_model10_no_bn_dr30/ssi_model10_dr50-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 
@@ -71,6 +75,7 @@ if __name__ == "__main__":
     history = test_model.fit(x=[lips_x_train, tongues_x_train], y=y_train, batch_size=64, epochs=200,
                              callbacks=callbacks_list,
                              validation_data=([lips_x_test, tongues_x_test], y_test))
+
     print(history.history.keys())
     # summarize history for loss
     plt.plot(history.history['loss'])

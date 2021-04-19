@@ -44,7 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.test_ssi_recurrent">
+  <component name="RunManager" selected="Python.data_generator_with_npy">
     <configuration name="data_generator_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -58,6 +58,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_generator_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="data_generator_with_npy" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Stage_Silent_Speech" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_generator_with_npy.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -108,27 +129,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_ssi_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Stage_Silent_Speech" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_ssi_model.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test_ssi_recurrent" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -152,11 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test_ssi_recurrent" />
+        <item itemvalue="Python.data_generator_with_npy" />
         <item itemvalue="Python.data_generator_test" />
+        <item itemvalue="Python.test_ssi_recurrent" />
         <item itemvalue="Python.ssi_model11" />
         <item itemvalue="Python.ssi_model10" />
-        <item itemvalue="Python.test_ssi_model" />
       </list>
     </recent_temporary>
   </component>
@@ -184,11 +184,15 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="354" y="228" width="762" height="596" key="#xdebugger.evaluate" timestamp="1618495220256">
+    <state x="605" y="165" key="#xdebugger.XInspectDialog" timestamp="1618825384885">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="354" y="228" width="762" height="596" key="#xdebugger.evaluate/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618495220256" />
-    <state x="865" y="120" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1618338715983" />
+    <state x="605" y="165" key="#xdebugger.XInspectDialog/0.0.1536.824@0.0.1536.824" timestamp="1618825384885" />
+    <state x="455" y="0" width="854" height="824" key="#xdebugger.evaluate" timestamp="1618827197280">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="494" y="228" width="762" height="596" key="#xdebugger.evaluate/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618536047717" />
+    <state x="455" y="0" width="854" height="824" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1618827197280" />
     <state width="1534" height="215" key="DebuggerActiveHint" timestamp="1616600943210">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -197,46 +201,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614764528267" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1618497839300">
+    <state width="1515" height="178" key="GridCell.Tab.0.bottom" timestamp="1618839623535">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618497839300" />
-    <state width="1515" height="157" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618434716595" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1618497839300">
+    <state width="1515" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618539532112" />
+    <state width="1515" height="178" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618839623535" />
+    <state width="1515" height="178" key="GridCell.Tab.0.center" timestamp="1618839623535">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618497839300" />
-    <state width="1515" height="157" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1618434716595" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1618497839300">
+    <state width="1515" height="208" key="GridCell.Tab.0.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618539532112" />
+    <state width="1515" height="178" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1618839623535" />
+    <state width="1515" height="178" key="GridCell.Tab.0.left" timestamp="1618839623535">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618497839300" />
-    <state width="1515" height="157" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1618434716595" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1618497839300">
+    <state width="1515" height="208" key="GridCell.Tab.0.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618539532112" />
+    <state width="1515" height="178" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1618839623535" />
+    <state width="1515" height="178" key="GridCell.Tab.0.right" timestamp="1618839623535">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618497839300" />
-    <state width="1515" height="157" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1618434716595" />
-    <state width="1515" height="147" key="GridCell.Tab.1.bottom" timestamp="1618495239374">
+    <state width="1515" height="208" key="GridCell.Tab.0.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618539532112" />
+    <state width="1515" height="178" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1618839623535" />
+    <state width="1515" height="318" key="GridCell.Tab.1.bottom" timestamp="1618827694578">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="147" key="GridCell.Tab.1.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618495239374" />
-    <state width="1515" height="180" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618338422836" />
-    <state width="1515" height="147" key="GridCell.Tab.1.center" timestamp="1618495239374">
+    <state width="1515" height="231" key="GridCell.Tab.1.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618539532101" />
+    <state width="1515" height="318" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618827694578" />
+    <state width="1515" height="318" key="GridCell.Tab.1.center" timestamp="1618827694578">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="147" key="GridCell.Tab.1.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618495239374" />
-    <state width="1515" height="180" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1618338422836" />
-    <state width="1515" height="147" key="GridCell.Tab.1.left" timestamp="1618495239374">
+    <state width="1515" height="231" key="GridCell.Tab.1.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618539532101" />
+    <state width="1515" height="318" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1618827694578" />
+    <state width="1515" height="318" key="GridCell.Tab.1.left" timestamp="1618827694578">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="147" key="GridCell.Tab.1.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618495239374" />
-    <state width="1515" height="180" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1618338422836" />
-    <state width="1515" height="147" key="GridCell.Tab.1.right" timestamp="1618495239374">
+    <state width="1515" height="231" key="GridCell.Tab.1.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618539532101" />
+    <state width="1515" height="318" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1618827694578" />
+    <state width="1515" height="318" key="GridCell.Tab.1.right" timestamp="1618827694578">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="147" key="GridCell.Tab.1.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618495239374" />
-    <state width="1515" height="180" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1618338422836" />
+    <state width="1515" height="231" key="GridCell.Tab.1.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1618539532101" />
+    <state width="1515" height="318" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1618827694578" />
     <state x="270" y="74" key="SettingsEditor" timestamp="1618431205591">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -246,5 +250,12 @@
     </state>
     <state x="414" y="146" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1615901556701" />
     <state x="414" y="146" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1617823869002" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="validation_lips_filepath_list" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

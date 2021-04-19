@@ -1,5 +1,5 @@
 """
-This file load images from the hard drive for each batch and training on it
+This file load images from npy and reshape them to (batch_size,5,64,64,1) for each batch of images
 """
 import numpy as np
 import tensorflow as tf
@@ -35,7 +35,8 @@ class DataGenerator(Sequence):
         data_lips = self.input_sample_lips
         data_tongues = self.input_sample_tongues
         label = self.input_label
-        # data_lips is file_path list which contains the file paths of lips images for one batch
+        # data_lips is the images npy and the batch_x_lips contains the lips images needed for each batch
+        # so are the data_tongues and the  batch_x_tongues
         batch_x_lips = [i for i in data_lips[idx:(idx + 4 + self.batch_size)]]
         batch_x_tongues = [i for i in data_tongues[idx:(idx + 4 + self.batch_size)]]
         batch_y = label[idx+2:idx+self.batch_size+2, :]
@@ -45,7 +46,7 @@ class DataGenerator(Sequence):
             # read five images
             for id_img_lips in range(5):
 
-                lip_correspond = np.array(Image.open(batch_x_lips[num_batch_lips+id_img_lips]))
+                lip_correspond = batch_x_lips[num_batch_lips+id_img_lips]
                 batch_image_lips[num_batch_lips, id_img_lips, :, :, 0] = lip_correspond
 
         # same for the tongues images
@@ -53,12 +54,8 @@ class DataGenerator(Sequence):
         for num_batch_tongues in range(self.batch_size):
             # read five tongues images
             for id_img_tongues in range(5):
-                tongue_correspond = np.array(Image.open(batch_x_tongues[num_batch_tongues+id_img_tongues]))
+                tongue_correspond = batch_x_tongues[num_batch_tongues+id_img_tongues]
                 batch_image_tongues[num_batch_tongues, id_img_tongues, :, :, 0] = tongue_correspond
-
-        # normalisation
-        batch_image_lips = batch_image_lips/255.0
-        batch_image_tongues = batch_image_tongues/255.0
 
         return [batch_image_lips, batch_image_tongues], batch_y
 
@@ -96,47 +93,38 @@ def ssi_model_11():
 if __name__ == "__main__":
     # organize the training data
 
-    train_lips_filepath_list = []
-    lips_file = os.listdir("../0414_images_in_one_folder/lips_6464_all_chapiter")
-    # the number of images used for training
-    nb_training_images = 68728
-    for nb_train_lips in range(nb_training_images):
-        train_lips_filepath_list.append("../0414_images_in_one_folder/lips_6464_all_chapiter/%d.bmp" % nb_train_lips)
-
-    train_tongues_filepath_list = []
-    tongues_file = os.listdir("../0414_images_in_one_folder/tongues_6464_all_chapiter")
-    for nb_train_tongues in range(nb_training_images):
-        train_tongues_filepath_list.append("../0414_images_in_one_folder/tongues_6464_all_chapiter/%d.bmp"
-                                           % nb_train_tongues)
-
+    X_lips = np.load("../data_npy_one_image/lips_all_chapiters.npy")
+    X_tongues = np.load("../data_npy_one_image/tongues_all_chapiters.npy")
     Y = np.load("../data_npy_one_image/spectrogrammes_all_chapitre_corresponding.npy")
+
+    nb_training_images = 68728
+
+    # normalisation
+    X_lips = X_lips / 255.0
+    X_tongues = X_tongues / 255.0
     max_spectrum = np.max(Y)
     Y = Y / max_spectrum
     Y = np.transpose(Y)
 
+    # images of ch1-ch6
+    train_lips = X_lips[:nb_training_images, :, :, 0]
+    train_tongues = X_lips[:nb_training_images, :, :, 0]
     # spectrum of ch1-ch6
     training_labels = Y[0:nb_training_images, :]
 ########################################################################################################################
     # organize the validation data
-
-    validation_lips_filepath_list = []
     nb_validation_images = 15951
-    for nb_validation_lips in range(nb_training_images, nb_training_images+nb_validation_images):
-        validation_lips_filepath_list.append("../0414_images_in_one_folder/lips_6464_all_chapiter/%d.bmp"
-                                             % nb_validation_lips)
-    validation_tongues_filepath_list = []
-    for nb_validation_tongues in range(nb_training_images, nb_training_images+nb_validation_images):
-        validation_tongues_filepath_list.append("../0414_images_in_one_folder/tongues_6464_all_chapiter/%d.bmp"
-                                                % nb_validation_tongues)
+    validation_lips = X_lips[-nb_validation_images:, :, :, 0]
+    validation_tongues = X_lips[-nb_validation_images:, :, 0]
     # spectrum of ch7 as validation labels
     validation_labels = Y[nb_training_images:nb_training_images+nb_validation_images, :]
 
 ########################################################################################################################
     # generate data
     batch_size = 64
-    training_generator = DataGenerator(train_lips_filepath_list, train_tongues_filepath_list,
+    training_generator = DataGenerator(train_lips, train_tongues,
                                        training_labels, batch_size)
-    validation_generator = DataGenerator(validation_lips_filepath_list, validation_tongues_filepath_list,
+    validation_generator = DataGenerator(validation_lips, validation_tongues,
                                          validation_labels, batch_size)
 
     # model

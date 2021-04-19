@@ -8,9 +8,11 @@ import os
 import matplotlib.image as mpimg
 
 if __name__ == "__main__":
-    test = np.load("../data_npy_one_image/tongues_all_chapiters.npy")
-    print(test.shape)
-    plt.figure()
-    for i in tqdm(range(len(test))):
-        plt.imshow(test[i,:, :, 0], cmap="gray")
-        plt.pause(0.001)
+    # load data
+    X_lips = np.load("../data_five_recurrent/lips_recurrent_5images_all_chapitres.npy")
+    X_tongues = np.load("../data_five_recurrent/tongues_recurrent_5images_all_chapitres.npy")
+    Y = np.load("../data_five_recurrent/spectrum_recurrent_all.npy")
+
+    # validation data ch7
+    validation_lips = X_lips[-15947:, :, :, :, 0]
+    validation_tongues = X_lips[-15947, :, :, :, 0]

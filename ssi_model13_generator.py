@@ -21,7 +21,7 @@ from tensorflow import keras
 # Sequence subclass generators
 class DataGenerator(Sequence):
 
-    def __init__(self, input_sample_lips, input_sample_tongues, input_label, batch_size=64):
+    def __init__(self, input_sample_lips, input_sample_tongues, input_label, batch_size):
         self.input_sample_lips = input_sample_lips
         self.input_sample_tongues = input_sample_tongues
         self.input_label = input_label
@@ -111,14 +111,14 @@ if __name__ == "__main__":
     # the number of images used for training
     nb_training_images = 68728
     for nb_train_lips in range(nb_training_images):
-        train_lips_filepath_list.append("lips_6464_all_chapiter/%d.bmp" % nb_train_lips)
+        train_lips_filepath_list.append("../images_in_one_folder_0422/lips_6464_all_chapiter/%d.bmp" % nb_train_lips)
 
     train_tongues_filepath_list = []
     for nb_train_tongues in range(nb_training_images):
-        train_tongues_filepath_list.append("tongues_6464_all_chapiter/%d.bmp"
+        train_tongues_filepath_list.append("../images_in_one_folder_0422/tongues_6464_all_chapiter/%d.bmp"
                                            % nb_train_tongues)
 
-    Y = np.load("spectrogrammes_all_chapitre_corresponding.npy")
+    Y = np.load("../data_npy_one_image/spectrogrammes_all_chapitre_corresponding.npy")
     max_spectrum = np.max(Y)
     Y = Y / max_spectrum
     Y = np.transpose(Y)
@@ -127,19 +127,19 @@ if __name__ == "__main__":
     training_labels = Y[0:nb_training_images, :]
 ########################################################################################################################
     # organize the validation data
-    validation_lips = np.load("lips_validation_ch7.npy")
-    validation_tongues = np.load("tongues_validation_ch7.npy")
+    validation_lips = np.load("../validation_data/lips_validation_ch7.npy")
+    validation_tongues = np.load("../validation_data/tongues_validation_ch7.npy")
     validation_lips /= 255.0
     validation_tongues /= 255.0
-    validation_label = np.load("spectrum_validation.npy")
+    validation_label = np.load("../validation_data/spectrum_validation.npy")
     validation_label /= max_spectrum
     validation_label = np.transpose(validation_label)
 
 ########################################################################################################################
     # generate data
-    batch_size = 64
+    my_batch_size = 128
     training_generator = DataGenerator(train_lips_filepath_list, train_tongues_filepath_list,
-                                       training_labels, batch_size)
+                                       training_labels, my_batch_size)
 
     # model
     model13 = ssi_model_13()
@@ -147,13 +147,13 @@ if __name__ == "__main__":
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-8)
     model13.compile(my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "ssi_model13_generator/ssi_model13-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "../ssi_model13_generator_bs128/ssi_model13_bs128-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 
     callbacks_list = [checkpoint]
     history = model13.fit_generator(training_generator,
-                                    steps_per_epoch=int(nb_training_images // batch_size),
+                                    steps_per_epoch=int(nb_training_images // my_batch_size),
                                     epochs=50,
                                     validation_data=([validation_lips, validation_tongues], validation_label),
                                     callbacks=callbacks_list,

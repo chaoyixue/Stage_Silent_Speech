@@ -12,7 +12,8 @@ import soundfile as sf
 import librosa.display
 from matplotlib import pyplot as plt
 
-if __name__ == "__main__":
+
+def visualize_couche_centrale():
     # load data
     X = np.load("../autoencoder_data/spectrogrammes_all_chapitre.npy")
     max_value = np.max(X)
@@ -38,23 +39,35 @@ if __name__ == "__main__":
     print(test_result.shape)
     x_test = np.transpose(x_test)
 
-    plt.imshow(test_result[:, :100], cmap='hot')
+    plt.imshow(test_result[:, :1000], cmap='hot')
     plt.xlabel("axis time")
     plt.ylabel("neurons in the center layer")
     plt.title("The values in the center layer")
     plt.colorbar()
     plt.show()
 
-    """
-    fig, ax = plt.subplots(nrows=2)
 
-    img = librosa.display.specshow(librosa.amplitude_to_db(x_test,
-                                                           ref=np.max), sr=44100, hop_length=735,
-                                   y_axis='log', x_axis='time', ax=ax[0])
-    ax[0].set_title('Power spectrogram')
-    librosa.display.specshow(librosa.amplitude_to_db(test_result, ref=np.max), sr=44100, hop_length=735,
-                             y_axis='log', x_axis='time', ax=ax[1])
-    ax[1].set_title('spectrum learned')
-    fig.colorbar(img, ax=ax, format="%+2.0f dB")
-    plt.show()
+if __name__ == "__main__":
     """
+    use the spectrogramme all chapitre corresponding to construct the 30 neurons of the central layer
+    """
+    spectrogramme_all_corresponding = np.load("../data_npy_one_image/spectrogrammes_all_chapitre_corresponding.npy")
+    max_value = np.max(spectrogramme_all_corresponding)
+    print(max_value)
+    # normalisation
+    spectrogramme_all_corresponding = spectrogramme_all_corresponding / max_value
+    print(spectrogramme_all_corresponding.max())
+    print(spectrogramme_all_corresponding.min())
+
+    training_spectrogrammes = np.transpose(spectrogramme_all_corresponding[:, :84679-15951])
+    testing_spectrogrammes = np.transpose(spectrogramme_all_corresponding[:, -15951:])
+
+    # load the pretrained model
+    model = keras.models.load_model("model_autoencoder_trained_0.00000230.h5")
+    model.summary()
+    center_layer = keras.models.Model(inputs=model.input, outputs=model.get_layer('dense_4').output)
+    center_layer.summary()
+    training_30_neurons = center_layer.predict(training_spectrogrammes)
+    testing_30_neurons = center_layer.predict(testing_spectrogrammes)
+    np.save("training_labels_30_neurons.npy", training_30_neurons)
+    np.save("validation_labels_30_neurons.npy", testing_30_neurons)

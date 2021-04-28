@@ -1,5 +1,7 @@
 """
 This file use fit generator and use the 30 values of the neurons as the labels
+
+Error : this file not works properly
 """
 import numpy as np
 import tensorflow as tf
@@ -109,7 +111,7 @@ if __name__ == "__main__":
     validation_tongues /= 255.0
     validation_label = np.load("../labels_generated_autoencoder_30values/validation_labels_30_neurons.npy")
     validation_label /= max_spectrum
-
+    validation_label = validation_label[2:-2]
 
 ########################################################################################################################
     # generate data

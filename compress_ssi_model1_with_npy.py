@@ -21,7 +21,7 @@ from tensorflow import keras
 # Sequence subclass generators
 class DataGenerator(Sequence):
 
-    def __init__(self, input_sample_lips, input_sample_tongues, input_label, batch_size):
+    def __init__(self, input_sample_lips, input_sample_tongues, input_label, batch_size=64):
         self.input_sample_lips = input_sample_lips
         self.input_sample_tongues = input_sample_tongues
         self.input_label = input_label
@@ -35,7 +35,8 @@ class DataGenerator(Sequence):
         data_lips = self.input_sample_lips
         data_tongues = self.input_sample_tongues
         label = self.input_label
-        # data_lips is file_path list which contains the file paths of lips images for one batch
+        # data_lips is the images npy and the batch_x_lips contains the lips images needed for each batch
+        # so are the data_tongues and the  batch_x_tongues
         batch_x_lips = [i for i in data_lips[idx:(idx + 4 + self.batch_size)]]
         batch_x_tongues = [i for i in data_tongues[idx:(idx + 4 + self.batch_size)]]
         batch_y = label[idx+2:idx+self.batch_size+2, :]
@@ -45,7 +46,7 @@ class DataGenerator(Sequence):
             # read five images
             for id_img_lips in range(5):
 
-                lip_correspond = np.array(Image.open(batch_x_lips[num_batch_lips+id_img_lips]))
+                lip_correspond = batch_x_lips[num_batch_lips+id_img_lips]
                 batch_image_lips[num_batch_lips, id_img_lips, :, :, 0] = lip_correspond
 
         # same for the tongues images
@@ -53,12 +54,8 @@ class DataGenerator(Sequence):
         for num_batch_tongues in range(self.batch_size):
             # read five tongues images
             for id_img_tongues in range(5):
-                tongue_correspond = np.array(Image.open(batch_x_tongues[num_batch_tongues+id_img_tongues]))
+                tongue_correspond = batch_x_tongues[num_batch_tongues+id_img_tongues]
                 batch_image_tongues[num_batch_tongues, id_img_tongues, :, :, 0] = tongue_correspond
-
-        # normalisation
-        batch_image_lips = batch_image_lips/255.0
-        batch_image_tongues = batch_image_tongues/255.0
 
         return [batch_image_lips, batch_image_tongues], batch_y
 
@@ -91,16 +88,15 @@ def compress_ssi_model1():
 if __name__ == "__main__":
     # organize the training data
 
-    train_lips_filepath_list = []
-    # the number of images used for training
+    X_lips = np.load("../data_npy_one_image/lips_all_chapiters.npy")
+    X_tongues = np.load("../data_npy_one_image/tongues_all_chapiters.npy")
     nb_training_images = 68728
-    for nb_train_lips in range(nb_training_images):
-        train_lips_filepath_list.append("../images_in_one_folder_0422/lips_6464_all_chapiter/%d.bmp" % nb_train_lips)
-
-    train_tongues_filepath_list = []
-    for nb_train_tongues in range(nb_training_images):
-        train_tongues_filepath_list.append("../images_in_one_folder_0422/tongues_6464_all_chapiter/%d.bmp"
-                                           % nb_train_tongues)
+    # normalisation
+    X_lips = X_lips / 255.0
+    X_tongues = X_tongues / 255.0
+    # images of ch1-ch6
+    train_lips = X_lips[:nb_training_images, :, :, 0]
+    train_tongues = X_lips[:nb_training_images, :, :, 0]
 
     training_labels = np.load("../labels_generated_autoencoder_30values/training_labels_30_neurons.npy")
     max_spectrum = np.max(training_labels)
@@ -117,8 +113,8 @@ if __name__ == "__main__":
 
 ########################################################################################################################
     # generate data
-    my_batch_size = 128
-    training_generator = DataGenerator(train_lips_filepath_list, train_tongues_filepath_list,
+    my_batch_size = 64
+    training_generator = DataGenerator(train_lips, train_tongues,
                                        training_labels, my_batch_size)
 
     # model
@@ -127,7 +123,7 @@ if __name__ == "__main__":
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-8)
     model13.compile(my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "../compress_ssi_model1_relu_bs128/compress_ssi_model1_bs128-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "../compress_ssi_model1_relu_bs64/compress_ssi_model1_bs64-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 

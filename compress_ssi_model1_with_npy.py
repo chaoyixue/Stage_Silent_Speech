@@ -109,7 +109,7 @@ if __name__ == "__main__":
     validation_tongues /= 255.0
     validation_label = np.load("../labels_generated_autoencoder_30values/validation_labels_30_neurons.npy")
     validation_label /= max_spectrum
-    validation_label = validation_label[2:-2]
+
 
 ########################################################################################################################
     # generate data

@@ -68,24 +68,18 @@ def prediction_autoencoder_input_couche_centre(autoencoder_model, input_npy):
 
 if __name__ == "__main__":
     # load data
-    X_lips = np.load("../validation_data/lips_validation_ch7.npy")
-    X_tongues = np.load("../validation_data/tongues_validation_ch7.npy")
-    validation_30_values = np.load("../labels_generated_autoencoder_30values/validation_labels_30_neurons.npy")
+    X_lips = np.load("../data_npy_one_image/lips_all_chapiters.npy")[-15951:]
+    X_tongues = np.load("../data_npy_one_image/tongues_all_chapiters.npy")[-15951:]
     # shape (bins_frequency, nb_vecteurs) for example here (736,15951)
-    validation_spectrogramme = np.load("../validation_data/spectrum_validation.npy")
+    validation_spectrogramme = np.load("../data_npy_one_image/spectrogrammes_all_chapitre_corresponding.npy")[:, -15951:]
 
     # normalisation
     X_lips = X_lips / 255.0
     X_tongues = X_tongues / 255.0
-    max_30 = np.max(validation_30_values)
-    validation_30_values /= max_30
     max_spectrum = np.max(validation_spectrogramme)
 
-    # choose the 15947 values in the middle
-    validation_30_values = np.transpose(validation_30_values[2:-2])
-
     # load the compress_ssi_model line to change for the test process
-    model = keras.models.load_model("../results/week_0426/compress_ssi_model1_bs64-24-0.00922065.h5")
+    model = keras.models.load_model("../results/week_0426/compress_ssi_model2-17-0.00936342.h5")
     model.summary()
     # make the prediction to get the 30 neurons of central layer
     test_result = model.predict([X_lips, X_tongues])
@@ -107,8 +101,10 @@ if __name__ == "__main__":
     fig.colorbar(img, ax=ax, format="%+2.0f dB")
 
     # regenerate the wav file
+    """
     test_reconstruit = librosa.griffinlim(spectrogramme_generated, n_iter=128, hop_length=735, win_length=735 * 2)
     sf.write("ch7_0429_compress_ssi_model2_bs64_linear.wav", test_reconstruit, 44100)
-
+    """
     plt.show()
+    print("aaa")
 

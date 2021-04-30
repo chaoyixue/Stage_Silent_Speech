@@ -31,6 +31,7 @@ def visualize_couche_centrale():
     model = keras.models.load_model("model_autoencoder_trained_0.00000230.h5")
     model.summary()
 
+    # the output is the central layer of the autoencoder
     last_layer = keras.models.Model(inputs=model.input, outputs=model.get_layer('dense_4').output)
     last_layer.summary()
     test_result = last_layer.predict(x_test)
@@ -50,6 +51,7 @@ def visualize_couche_centrale():
 if __name__ == "__main__":
     """
     use the spectrogramme all chapitre corresponding to construct the 30 neurons of the central layer
+    """
     """
     spectrogramme_all_corresponding = np.load("../data_npy_one_image/spectrogrammes_all_chapitre_corresponding.npy")
     max_value = np.max(spectrogramme_all_corresponding)
@@ -71,3 +73,5 @@ if __name__ == "__main__":
     testing_30_neurons = center_layer.predict(testing_spectrogrammes)
     np.save("training_labels_30_neurons.npy", training_30_neurons)
     np.save("validation_labels_30_neurons.npy", testing_30_neurons)
+    """
+    visualize_couche_centrale()

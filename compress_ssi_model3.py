@@ -133,7 +133,7 @@ if __name__ == "__main__":
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-8)
     model13.compile(my_optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-    filepath = "../compress_ssi_model3_relu_bs128/compress_ssi_model3_relu_bs128-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "compress_ssi_model3_relu_bs128/compress_ssi_model3_relu_bs128-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 

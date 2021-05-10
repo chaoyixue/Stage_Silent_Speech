@@ -85,7 +85,7 @@ if __name__ == "__main__":
     validation_30_values = np.transpose(validation_30_values[2:-2])
 
     # load the compress_ssi_model line to change for the test process
-    model = keras.models.load_model("../results/week_0426/compress_ssi_model1_bs64-24-0.00922065.h5")
+    model = keras.models.load_model("../results/compress_ssi_model5_linear_bs128-41-0.00916323.h5")
     model.summary()
     # make the prediction to get the 30 neurons of central layer
     test_result = model.predict([X_lips, X_tongues])
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
     # regenerate the wav file
     test_reconstruit = librosa.griffinlim(spectrogramme_generated, n_iter=128, hop_length=735, win_length=735 * 2)
-    sf.write("ch7_0429_compress_ssi_model2_bs64_linear.wav", test_reconstruit, 44100)
+    sf.write("ch7_0506_compress_ssi_model5_bs128_linear.wav", test_reconstruit, 44100)
 
     plt.show()
 

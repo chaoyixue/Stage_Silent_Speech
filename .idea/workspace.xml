@@ -44,7 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.test_compress_ssi_model_one_image">
+  <component name="RunManager" selected="Python.test_compress_ssi_model_5_images">
     <configuration name="compress_ssi_model2_one_image" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -152,8 +152,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test_compress_ssi_model_one_image" />
         <item itemvalue="Python.test_compress_ssi_model_5_images" />
+        <item itemvalue="Python.test_compress_ssi_model_one_image" />
         <item itemvalue="Python.test_pretrained_autoencoder" />
         <item itemvalue="Python.compress_ssi_model2_one_image" />
         <item itemvalue="Python.test_compress_ssi_models" />

@@ -80,7 +80,7 @@ if __name__ == "__main__":
 
     filepath = "two_parts_ssi_model2/two_parts_ssi_model2-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
-                                 save_best_only=True, mode='auto')  # only save improved accuracy model
+                                 save_best_only=True, mode='auto')  # only save improved loss model
 
     callbacks_list = [checkpoint]
     history = test_model.fit(x=[lips_x_train, tongues_x_train], y=[y_train_real, y_train_imag], batch_size=64,

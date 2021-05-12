@@ -17,6 +17,7 @@ def convert_wav_to_spectrum(file_path, sample_rate=44100, nfft=735*2, window_len
     """
     y, sr = librosa.load(file_path, sr=sample_rate)  # load the wav file with the sample rate chosen
     spectrogram_y = np.abs(librosa.stft(y, n_fft=nfft, hop_length=hop_length, win_length=window_length))
+    # shape : (736, N)
     return spectrogram_y
 
 

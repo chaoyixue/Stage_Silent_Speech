@@ -49,8 +49,8 @@
       <recent name="C:\Users\chaoy\Desktop\StageSilentSpeech\Stage_Silent_Speech\two_parts_ssi_model" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_librosa_yin_pyin">
-    <configuration name="phase_labels_preparation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.test_autoencoder_tongues">
+    <configuration name="autoencoder_image_lips" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -58,11 +58,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/phase_prediction_model" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LSF_2021" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phase_prediction_model/phase_labels_preparation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LSF_2021/autoencoder_image_lips.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -71,7 +71,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="phase_prediction_model1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="autoencoder_lips_model2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -79,11 +79,53 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/phase_prediction_model" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LSF_2021" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phase_prediction_model/phase_prediction_model1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LSF_2021/autoencoder_lips_model2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_autoencoder_lips" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Stage_Silent_Speech" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LSF_2021" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LSF_2021/test_autoencoder_lips.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_autoencoder_tongues" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Stage_Silent_Speech" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LSF_2021" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LSF_2021/test_autoencoder_tongues.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -113,55 +155,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_two_part_ssi_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Stage_Silent_Speech" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/two_parts_ssi_model" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/two_parts_ssi_model/test_two_part_ssi_model.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="visualisation_phase" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Stage_Silent_Speech" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/visualisation_phase.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_autoencoder_tongues" />
+        <item itemvalue="Python.test_autoencoder_lips" />
+        <item itemvalue="Python.autoencoder_lips_model2" />
+        <item itemvalue="Python.autoencoder_image_lips" />
         <item itemvalue="Python.test_librosa_yin_pyin" />
-        <item itemvalue="Python.visualisation_phase" />
-        <item itemvalue="Python.phase_prediction_model1" />
-        <item itemvalue="Python.phase_labels_preparation" />
-        <item itemvalue="Python.test_two_part_ssi_model" />
       </list>
     </recent_temporary>
   </component>
@@ -206,46 +206,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614764528267" />
-    <state width="1515" height="265" key="GridCell.Tab.0.bottom" timestamp="1620981628424">
+    <state width="1500" height="177" key="GridCell.Tab.0.bottom" timestamp="1621535630984">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1619710680520" />
-    <state width="1515" height="265" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620981628424" />
-    <state width="1515" height="265" key="GridCell.Tab.0.center" timestamp="1620981628424">
+    <state width="1500" height="177" key="GridCell.Tab.0.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1621535630984" />
+    <state width="1515" height="177" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621516662555" />
+    <state width="1500" height="177" key="GridCell.Tab.0.center" timestamp="1621535630984">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="227" key="GridCell.Tab.0.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1619710680520" />
-    <state width="1515" height="265" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620981628424" />
-    <state width="1515" height="265" key="GridCell.Tab.0.left" timestamp="1620981628424">
+    <state width="1500" height="177" key="GridCell.Tab.0.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1621535630984" />
+    <state width="1515" height="177" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621516662555" />
+    <state width="1500" height="177" key="GridCell.Tab.0.left" timestamp="1621535630984">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="227" key="GridCell.Tab.0.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1619710680520" />
-    <state width="1515" height="265" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620981628424" />
-    <state width="1515" height="265" key="GridCell.Tab.0.right" timestamp="1620981628424">
+    <state width="1500" height="177" key="GridCell.Tab.0.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1621535630984" />
+    <state width="1515" height="177" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621516662554" />
+    <state width="1500" height="177" key="GridCell.Tab.0.right" timestamp="1621535630984">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="227" key="GridCell.Tab.0.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1619710680520" />
-    <state width="1515" height="265" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620981628424" />
-    <state width="1515" height="150" key="GridCell.Tab.1.bottom" timestamp="1620832582778">
+    <state width="1500" height="177" key="GridCell.Tab.0.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1621535630984" />
+    <state width="1515" height="177" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621516662555" />
+    <state width="1515" height="215" key="GridCell.Tab.1.bottom" timestamp="1621457015644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="227" key="GridCell.Tab.1.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1619710680520" />
-    <state width="1515" height="150" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620832582778" />
-    <state width="1515" height="150" key="GridCell.Tab.1.center" timestamp="1620832582778">
+    <state width="1515" height="215" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621457015644" />
+    <state width="1515" height="215" key="GridCell.Tab.1.center" timestamp="1621457015643">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="227" key="GridCell.Tab.1.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1619710680520" />
-    <state width="1515" height="150" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1620832582778" />
-    <state width="1515" height="150" key="GridCell.Tab.1.left" timestamp="1620832582778">
+    <state width="1515" height="215" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1621457015643" />
+    <state width="1515" height="215" key="GridCell.Tab.1.left" timestamp="1621457015643">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="227" key="GridCell.Tab.1.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1619710680520" />
-    <state width="1515" height="150" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1620832582778" />
-    <state width="1515" height="150" key="GridCell.Tab.1.right" timestamp="1620832582778">
+    <state width="1515" height="215" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1621457015643" />
+    <state width="1515" height="215" key="GridCell.Tab.1.right" timestamp="1621457015644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="227" key="GridCell.Tab.1.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1619710680520" />
-    <state width="1515" height="150" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1620832582778" />
+    <state width="1515" height="215" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1621457015644" />
     <state x="270" y="74" key="SettingsEditor" timestamp="1621258533842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

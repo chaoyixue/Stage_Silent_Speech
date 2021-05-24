@@ -437,9 +437,9 @@ def keras_train(path,
     model_compile(model, optimizer, classification, multi_task, AE=AE, order=order)
 
     timenow = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-    model_path = '../out/%s/bst_model.h5' % (EXP_NAME)
+    model_path = '../out/%s/bst_model.h5' % EXP_NAME
 
-    model_checkpoint = tf.keras.callbacks.ModelCheckpoint(model_path, monitor='val_loss', save_best_only=True, \
+    model_checkpoint = tf.keras.callbacks.ModelCheckpoint(model_path, monitor='val_loss', save_best_only=True,
                                                           save_weights_only=True)
     earlystop = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, mode='min')
 

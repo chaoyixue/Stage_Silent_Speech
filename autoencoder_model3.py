@@ -36,8 +36,8 @@ if __name__ == "__main__":
     print(X.min())
 
     # split train test data
-    x_train = np.transpose(X[:, :84776 - 15951])
-    x_test = np.transpose(X[:, -15951:])
+    x_train = np.matrix.transpose(X[:, :84776 - 15951])
+    x_test = np.matrix.transpose(X[:, -15951:])
     print(x_train.shape)
     print(x_test.shape)
 

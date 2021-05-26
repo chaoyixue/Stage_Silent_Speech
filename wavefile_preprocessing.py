@@ -22,8 +22,7 @@ def convert_wav_to_spectrum(file_path, sample_rate=44100, nfft=735*2, window_len
 
 
 if __name__ == "__main__":
-    filepath_ch1 = "../data/20200616_154520_RecFile_1_bruce_ch1/" \
-                   "RecFile_1_20200616_154520_Sound_Capture_DShow_5_monoOutput1.wav"
+    filepath_ch1 = "../wav_files/chapiter1.wav"
     spect_ch1 = convert_wav_to_spectrum(filepath_ch1)
     spect_ch1 = spect_ch1[:, :10054]
     filepath_ch2 = "../data/20200617_150421_RecFile_1_bruce_ch2" \

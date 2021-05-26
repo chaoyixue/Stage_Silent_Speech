@@ -44,15 +44,15 @@ if __name__ == "__main__":
     max_spectrum = np.max(Y)
     Y = Y/max_spectrum
 
-    # split train set data
+    # split train test data
     lips_x_train = X_lips[:-15951]
     lips_x_test = X_lips[-15951:]
     tongues_x_train = X_tongues[:-15951]
     tongues_x_test = X_tongues[-15951:]
     y_train = Y[:, :-15951]
     y_test = Y[:, -15951:]
-    y_train = np.transpose(y_train)
-    y_test = np.transpose(y_test)
+    y_train = np.matrix.transpose(y_train)
+    y_test = np.matrix.transpose(y_test)
 
     test_model = two_input_one_output_model() 
     test_model.summary()

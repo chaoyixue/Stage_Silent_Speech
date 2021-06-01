@@ -71,13 +71,15 @@ if __name__ == "__main__":
     x4 = np.arange(0, len(f0_chapiter4))
     x5 = np.arange(0, len(f0_chapiter5))
     x6 = np.arange(0, len(f0_chapiter6))
-    x7 = np.arange(0, len(f0_chapiter7))
+    """
+    x7 = np.arange(0, len(f0_chapiter7)) * 0.016
+
     plt.figure()
-    plt.plot(x1, f0_chapiter1, 'r-', label="chapiter 1")
+    plt.plot(x7, f0_chapiter7, 'r-', label="chapiter 1")
     plt.legend()
     plt.title("fundamental frequency")
     plt.xlabel("time (s)")
     plt.ylabel("frequency (Hz)")
     plt.show()
-    print("aaa")
-    """
+
+

@@ -28,12 +28,12 @@ if __name__ == "__main__":
     tongues_x_test = X_tongues[-15951:]
     y_train = Y[:, :-15951]
     y_test = Y[:, -15951:]
-    y_train = np.transpose(y_train)
-    y_test = np.transpose(y_test)
+    y_train = np.matrix.transpose(y_train)
+    y_test = np.matrix.transpose(y_test)
 
     model = keras.models.load_model("../ssi_model1_val_loss-0.00004934.h5")
     test_result = model.predict([lips_x_test, tongues_x_test])
-    result = np.transpose(test_result)
+    result = np.matrix.transpose(test_result)
 
     result = result * max_spectrum
     """
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     """
 
     fig, ax = plt.subplots(nrows=2)
-    img = librosa.display.specshow(librosa.amplitude_to_db(np.transpose(y_test),
+    img = librosa.display.specshow(librosa.amplitude_to_db(np.matrix.transpose(y_test),
                                                            ref=np.max), sr=44100, hop_length=735,
                                    y_axis='linear', x_axis='time', ax=ax[0])
     ax[0].set_title('original spectrum')

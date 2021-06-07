@@ -37,14 +37,14 @@ if __name__ == "__main__":
     y_train = spectrum[:-15951]
     y_test = spectrum[-15951:]
 
-    mymodel = keras.models.load_model("../../results/week_0527/lsf_spectrum_model2_1000epochs-963-0.00002850.h5")
+    mymodel = keras.models.load_model("../../results/week_0602/lsf_spectrum_model8-565-0.00001415.h5")
     test_result = mymodel.predict([lsf_test, f0_test, uv_test])
     result = np.matrix.transpose(test_result)
     result = result * max_spectrum
 
     # reconstruct the wav file
-    # test_reconstruit = librosa.griffinlim(result, hop_length=735, win_length=735 * 2)
-    # sf.write("ch7_reconstructed_lsf_f0_uv_model2_1000epochs.wav", test_reconstruit, 44100)
+    test_reconstruit = librosa.griffinlim(result, hop_length=735, win_length=735 * 2)
+    sf.write("ch7_reconstructed_lsf_f0_uv_model8.wav", test_reconstruit, 44100)
 
     fig, ax = plt.subplots(nrows=2)
     img = librosa.display.specshow(librosa.amplitude_to_db(np.matrix.transpose(y_test),

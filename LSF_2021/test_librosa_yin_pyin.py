@@ -1,5 +1,5 @@
 """
-This file is used to test the function yin and pyin in librosa which is used to calculate the fundamental frequency
+This file is used to test the function yin and pyin in librosa which is used to calculate the fundamental frequency F0
 """
 
 import librosa

@@ -7,9 +7,12 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 
-def calculate_f0(file_path, fmin=65, fmax=2093, sample_rate=44100, frame_length=2048, win_length=735*2,
+def calculate_f0(file_path, fmin=65, fmax=2093, sample_rate=44100, frame_length=2048, win_length=735 * 2,
                  hop_length=735, threshold=0.1, seuil_voice=300):
     """
+    We calculated the fundamental frequency by using the algorithm yin and all the f0 higher than seuil_voice will be
+    considered as unvoiced and be reset to 0
+
     :param seuil_voice:
     :param threshold:
     :param file_path: the path of the wav file .wav
@@ -34,7 +37,50 @@ def calculate_f0(file_path, fmin=65, fmax=2093, sample_rate=44100, frame_length=
     return result_f0, uv_flags
 
 
+def calculate_f0_without_threshold(file_path, fmin=65, fmax=2093, sample_rate=44100, frame_length=2048,
+                                   win_length=735 * 2,
+                                   hop_length=735, threshold=0.1):
+    """
+    calculation of the fundamental frequency without the threshold
+    :param file_path:
+    :param fmin:
+    :param fmax:
+    :param sample_rate:
+    :param frame_length:
+    :param win_length:
+    :param hop_length:
+    :param threshold:
+    :return:
+    """
+    wav_file, _ = librosa.load(file_path, sr=sample_rate)
+    result_f0 = librosa.yin(wav_file, fmin=fmin, fmax=fmax, sr=sample_rate, frame_length=frame_length,
+                            win_length=win_length, hop_length=hop_length, trough_threshold=threshold)
+    return result_f0
+
+
 if __name__ == "__main__":
+    # calculation F0 without threshold
+    f0_chapiter1 = calculate_f0_without_threshold("../../wav_files/chapiter1.wav")
+    f0_chapiter2 = calculate_f0_without_threshold("../../wav_files/chapiter2.wav")
+    f0_chapiter3 = calculate_f0_without_threshold("../../wav_files/chapiter3.wav")
+    f0_chapiter4 = calculate_f0_without_threshold("../../wav_files/chapiter4.wav")
+    f0_chapiter5 = calculate_f0_without_threshold("../../wav_files/chapiter5.wav")
+    f0_chapiter6 = calculate_f0_without_threshold("../../wav_files/chapiter6.wav")
+    f0_chapiter7 = calculate_f0_without_threshold("../../wav_files/chapiter7.wav")
+    # to correspond to the number of images lips and tongues
+    f0_chapiter1 = f0_chapiter1[:10054]
+    f0_chapiter2 = f0_chapiter2[:14441]
+    f0_chapiter3 = f0_chapiter3[:8885]
+    f0_chapiter4 = f0_chapiter4[:15621]
+    f0_chapiter5 = f0_chapiter5[:14553]
+    f0_chapiter6 = f0_chapiter6[:5174]
+    f0_chapiter7 = f0_chapiter7[:15951]
+    f0_all_chapiters = np.concatenate((f0_chapiter1, f0_chapiter2, f0_chapiter3,
+                                       f0_chapiter4, f0_chapiter5, f0_chapiter6, f0_chapiter7), axis=0)
+    print(f0_all_chapiters.shape)
+    np.save("f0_all_chapiter_without_threshold.npy", f0_all_chapiters)
+    """
+    # calculation F0 with threshold
     f0_chapiter1, uv_ch1 = calculate_f0("../../wav_files/chapiter1.wav")
     f0_chapiter2, uv_ch2 = calculate_f0("../../wav_files/chapiter2.wav")
     f0_chapiter3, uv_ch3 = calculate_f0("../../wav_files/chapiter3.wav")
@@ -58,12 +104,14 @@ if __name__ == "__main__":
     uv_ch6 = uv_ch6[:5174]
     uv_ch7 = uv_ch7[:15951]
     f0_all_chapiters = np.concatenate((f0_chapiter1, f0_chapiter2, f0_chapiter3,
-                                      f0_chapiter4, f0_chapiter5, f0_chapiter6, f0_chapiter7), axis=0)
+                                       f0_chapiter4, f0_chapiter5, f0_chapiter6, f0_chapiter7), axis=0)
     uv_all_chapiters = np.concatenate((uv_ch1, uv_ch2, uv_ch3, uv_ch4, uv_ch5, uv_ch6, uv_ch7), axis=0)
     print(f0_all_chapiters.shape)
     print(uv_all_chapiters.shape)
     np.save("f0_all_chapiter.npy", f0_all_chapiters)
     np.save("uv_all_chapiter.npy", uv_all_chapiters)
+    """
+
     """
     x1 = np.arange(0, len(f0_chapiter1)) * 0.016  # 16ms between two values
     x2 = np.arange(0, len(f0_chapiter2))
@@ -71,6 +119,7 @@ if __name__ == "__main__":
     x4 = np.arange(0, len(f0_chapiter4))
     x5 = np.arange(0, len(f0_chapiter5))
     x6 = np.arange(0, len(f0_chapiter6))
+    """
     """
     x7 = np.arange(0, len(f0_chapiter7)) * 0.016
 
@@ -81,5 +130,4 @@ if __name__ == "__main__":
     plt.xlabel("time (s)")
     plt.ylabel("frequency (Hz)")
     plt.show()
-
-
+    """

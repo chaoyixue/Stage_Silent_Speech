@@ -96,10 +96,6 @@ if __name__ == "__main__":
     energy = energy.reshape((energy.shape[1], 1))
     print(energy.shape)
 
-    # X_lsf = X_lsf.reshape(len(X_lsf), X_lsf.shape[1], 1)
-    # X_f0 = X_f0.reshape(len(X_f0), 1, 1)
-    # X_uv = X_uv.reshape(len(X_uv), 1, 1)
-
     # normalisation
     max_spectrum = np.max(spectrum)
     spectrum = spectrum / max_spectrum

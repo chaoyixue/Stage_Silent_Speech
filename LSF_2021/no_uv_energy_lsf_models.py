@@ -53,6 +53,27 @@ def no_uv_energy_lsfmodel2():
     return mymodel
 
 
+def no_uv_energy_lsfmodel3():
+    input_lsp = Input(shape=(13,))
+    lsp_fc1 = Dense(32, activation="relu")(input_lsp)
+    lsp_fc2 = Dense(64, activation="relu")(lsp_fc1)
+    lsp_fc3 = Dense(128, activation="relu")(lsp_fc2)
+
+    input_f0 = Input(shape=(1,))
+    f0_fc1 = Dense(16, activation="relu")(input_f0)
+    f0_fc2 = Dense(32, activation="relu")(f0_fc1)
+
+    input_energy = Input(shape=(1,))
+    energy_fc1 = Dense(16, activation="relu")(input_energy)
+
+    cc = concatenate([lsp_fc3, f0_fc2, energy_fc1])
+    fc_result_1 = Dense(128, activation="relu")(cc)
+    fc_result_2 = Dense(256, activation="relu")(fc_result_1)
+    fc_result_3 = Dense(736, activation="linear")(fc_result_2)
+    mymodel = Model([input_lsp, input_f0, input_energy], fc_result_3)
+    return mymodel
+
+
 if __name__ == "__main__":
     # load data
     X_lsf = np.load("lsp_all_chapiter.npy")
@@ -84,7 +105,7 @@ if __name__ == "__main__":
     test_model.summary()
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-7)
     test_model.compile(my_optimizer, loss=tf.keras.losses.MeanSquaredError())
-    filepath = "no_uv_energy_lsf_model2/no_uv_energy_lsf_model2-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "no_uv_energy_lsfmodel3/no_uv_energy_lsfmodel3-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 

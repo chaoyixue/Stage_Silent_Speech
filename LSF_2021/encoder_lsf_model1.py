@@ -51,15 +51,15 @@ def encoder_lsf_model1():
     # take the encoder part of the two image inputs
     cc = concatenate([lip_pooling2, tongue_pooling2])
     lsf_dense1 = Dense(256, activation='relu')(cc)
-    lsf_coefficients = Dense(13, activation='sigmoid', name='lsf_output')(lsf_dense1)
+    lsf_coefficients = Dense(13, activation='relu', name='lsf_output')(lsf_dense1)
     mymodel = Model([input_lip, input_tongue], [lip_decoded, tongue_decoded, lsf_coefficients])
     return mymodel
 
 
 if __name__ == "__main__":
-    X_lip = np.load("lips_all_chapiters.npy")
-    X_tongue = np.load("tongues_all_chapiters.npy")
-    lsf_original = np.load("lsp_all_chapiter.npy")
+    X_lip = np.load("../../data_npy_one_image/lips_all_chapiters.npy")
+    X_tongue = np.load("../../data_npy_one_image/tongues_all_chapiters.npy")
+    lsf_original = np.load("../../LSF_data/lsp_all_chapiter.npy")
 
     # normalisation
     X_lip = X_lip / 255.0
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-8)
     losses = {
         "lip_output": "binary_crossentropy",
-        "tongue_output": "categorical_crossentropy",
+        "tongue_output": "binary_crossentropy",
         "lsf_output": "mean_squared_error"
     }
     test_model.compile(optimizer=my_optimizer, loss=losses)

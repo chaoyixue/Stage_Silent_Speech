@@ -13,26 +13,27 @@ from tensorflow.keras.models import Model
 def autoencoder_tongues():
     input_img = Input(shape=(64, 64, 1))
     # encoding
-    conv1 = Conv2D(filters=16, kernel_size=(5, 5), activation='relu', padding='same')(input_img)
-    conv2 = Conv2D(filters=16, kernel_size=(5, 5), activation='relu', padding='same')(conv1)
-    pooling1 = MaxPooling2D(pool_size=(2, 2))(conv2)
-    conv3 = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same')(pooling1)
-    conv4 = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same')(conv3)
-    pooling2 = MaxPooling2D(pool_size=(2, 2))(conv4)
+    conv1 = Conv2D(filters=16, kernel_size=(5, 5), activation='relu', padding='same', name='tongue_conv1')(input_img)
+    conv2 = Conv2D(filters=16, kernel_size=(5, 5), activation='relu', padding='same', name='tongue_conv2')(conv1)
+    pooling1 = MaxPooling2D(pool_size=(2, 2), name='tongue_pooling1')(conv2)
+    conv3 = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same', name='tongue_conv3')(pooling1)
+    conv4 = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same', name='tongue_conv4')(conv3)
+    pooling2 = MaxPooling2D(pool_size=(2, 2), name='tongue_pooling2')(conv4)
 
     # decoding
-    conv5 = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same')(pooling2)
-    conv6 = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same')(conv5)
-    upsample1 = UpSampling2D(size=(2, 2))(conv6)
-    conv7 = Conv2D(filters=16, kernel_size=(5, 5), activation='relu', padding='same')(upsample1)
-    conv8 = Conv2D(filters=16, kernel_size=(5, 5), activation='relu', padding='same')(conv7)
-    upsample2 = UpSampling2D(size=(2, 2))(conv8)
+    conv5 = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same', name='tongue_conv5')(pooling2)
+    conv6 = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same', name='tongue_conv6')(conv5)
+    upsample1 = UpSampling2D(size=(2, 2), name='tongue_upsample1')(conv6)
+    conv7 = Conv2D(filters=16, kernel_size=(5, 5), activation='relu', padding='same', name='tongue_conv7')(upsample1)
+    conv8 = Conv2D(filters=16, kernel_size=(5, 5), activation='relu', padding='same', name='tongue_conv8')(conv7)
+    upsample2 = UpSampling2D(size=(2, 2), name='tongue_upsample2')(conv8)
 
-    decoded = Conv2D(filters=1, kernel_size=(5, 5), activation='sigmoid', padding='same')(upsample2)
+    decoded = Conv2D(filters=1, kernel_size=(5, 5), activation='sigmoid',
+                     padding='same', name='tongue_decoded')(upsample2)
 
-    autoencoder_lip = Model(input_img, decoded)
-    autoencoder_lip.summary()
-    return autoencoder_lip
+    autoencoder_tongue = Model(input_img, decoded, name='autoencoder_tongue')
+    autoencoder_tongue.summary()
+    return autoencoder_tongue
 
 
 if __name__ == "__main__":

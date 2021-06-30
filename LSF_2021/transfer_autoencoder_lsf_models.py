@@ -49,6 +49,25 @@ def transfer_autoencoder_lsf_model2():
     return new_model
 
 
+def transfer_autoencoder_lsf_model3():
+    autoencoder_lip = keras.models.load_model("C:/Users/chaoy/Desktop/StageSilentSpeech/results/"
+                                              "week_0614/autoencoder_lips-100-0.48278144.h5")
+    autoencoder_tongue = keras.models.load_model("C:/Users/chaoy/Desktop/StageSilentSpeech/results/"
+                                                 "week_0614/autoencoder_tongues-100-0.06104492.h5")
+    autoencoder_lip.summary()
+    autoencoder_tongue.summary()
+    output_lip = autoencoder_lip.get_layer("lip_pooling2").output
+    output_tongue = autoencoder_tongue.get_layer("tongue_pooling2").output
+    flat_lip = Flatten(name='flat_lip')(output_lip)
+    flat_tongue = Flatten(name='flat_tongue')(output_tongue)
+    cc = concatenate([flat_lip, flat_tongue])
+    lsf_fc1 = Dense(1024, activation='relu', name='lsf_fc1')(cc)
+    lsf_fc2 = Dense(13, activation='relu', name='lsf_fc2')(lsf_fc1)
+    new_model = Model([autoencoder_lip.input, autoencoder_tongue.input], lsf_fc2, name='transfer_autoencoder_lsf')
+    new_model.summary()
+    return new_model
+
+
 if __name__ == "__main__":
     X_lip = np.load("../../data_npy_one_image/lips_all_chapiters.npy")
     X_tongue = np.load("../../data_npy_one_image/tongues_all_chapiters.npy")

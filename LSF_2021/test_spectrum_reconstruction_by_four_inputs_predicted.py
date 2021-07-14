@@ -40,8 +40,7 @@ def do_the_prediction_of_image2grandeurs(image2lsf_model, image2f0_model, image2
 
 
 def reconstruction_spectrum_by_four_inputs_predicted():
-    tr_ae_lsf_model = keras.models.load_model("../../results/week_0622/"
-                                              "transfer_autoencoder_lsf_model1-12-0.00502079.h5")
+    tr_ae_lsf_model = keras.models.load_model("../../results/week_0705/image2lsf_model7_dr03-36-0.00491458.h5")
     tr_ae_f0_model = keras.models.load_model("../../results/week_0622/transfer_autoencoder_f0_model1-10-0.03161320.h5")
     tr_ae_uv_model = keras.models.load_model("../../results/week_0622/transfer_autoencoder_uv_model1-09-0.865.h5")
     tr_ae_energy_model = keras.models.load_model("../../results/week_0622/"
@@ -73,6 +72,9 @@ def reconstruction_spectrum_by_four_inputs_predicted():
     f0_prediected = f0_prediected * max_f0
     energy_predicted = energy_predicted * max_energy
 
+    # the 13th, which is the last coefficient of the lsf reset to zero
+    lsf_predicted[:, 12] = 0
+
     # load the energy_lsf_spectrum model used
     mymodel = keras.models.load_model("C:/Users/chaoy/Desktop/StageSilentSpeech/results/week_0607/"
                                       "energy_lsf_spectrum_model2-667-0.00000845.h5")
@@ -86,10 +88,10 @@ def reconstruction_spectrum_by_four_inputs_predicted():
 
     # reconstruct the wave file
     test_reconstruit = librosa.griffinlim(result, hop_length=735, win_length=735 * 2)
-    sf.write("ch7_reconstructed_total_model_lsf.wav", test_reconstruit, 44100)
+    sf.write("ch7_reconstructed_total_model_lsf_0708.wav", test_reconstruit, 44100)
 
     # load the wave file produced by griffin-lim
-    wav_produced, _ = librosa.load("ch7_reconstructed_total_model_lsf.wav", sr=44100)
+    wav_produced, _ = librosa.load("ch7_reconstructed_total_model_lsf_0708.wav", sr=44100)
     spectrogram_produced_griffin = np.abs(librosa.stft(wav_produced, n_fft=735 * 2, hop_length=735, win_length=735 * 2))
 
     fig, ax = plt.subplots(nrows=3)
@@ -256,5 +258,5 @@ def reconstruction_spectrum_original_lsf_f0():
 
 
 if __name__ == "__main__":
-    reconstruction_spectrum_original_lsf_f0()
+    reconstruction_spectrum_by_four_inputs_predicted()
 

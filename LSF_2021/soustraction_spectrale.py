@@ -7,6 +7,7 @@ if __name__ == "__main__":
     y, _ = librosa.load("ch7_reconstructed_total_model_lsf_0715.wav", sr=44100)
     module = np.abs(librosa.stft(y, n_fft=735*2, hop_length=735, win_length=735*2))
     phase = np.angle(librosa.stft(y, n_fft=735*2, hop_length=735, win_length=735*2))
+    # calculate the mean value of the first tenth frames
     spectral_bruit = np.nanmean(module[:, :10], axis=1)
     new_module = np.zeros(module.shape)
     for i in range(module.shape[1]):

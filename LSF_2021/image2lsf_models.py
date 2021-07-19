@@ -249,7 +249,7 @@ def image2lsf_model7():
     flat_tongue = Flatten()(tongue_pooling2)
     cc = concatenate([flat_lip, flat_tongue])
     lsf_fc1 = Dense(256, activation='relu', name='lsf_fc1')(cc)
-    lsf_dr1 = Dropout(0.5)(lsf_fc1)
+    lsf_dr1 = Dropout(0.3)(lsf_fc1)
     lsf_fc2 = Dense(13, activation='linear', name='lsf_fc2')(lsf_dr1)
     new_model = Model([input_lip, input_tongue], lsf_fc2, name='transfer_autoencoder_lsf')
     new_model.summary()
@@ -265,6 +265,10 @@ if __name__ == "__main__":
     X_lip = X_lip / 255.0
     X_tongue = X_tongue / 255.0
 
+    # add the normalization of lsf values
+    max_lsf = np.max(lsf_original)
+    lsf_original = lsf_original/max_lsf
+    print("the maximum lsf value %f :" % max_lsf)
     # split train test data
     nb_image_chapiter7 = 15951
     X_lip_train = X_lip[:-nb_image_chapiter7, :]
@@ -277,11 +281,11 @@ if __name__ == "__main__":
     test_model = image2lsf_model7()
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-8)
     test_model.compile(optimizer=my_optimizer, loss=tf.keras.losses.MeanSquaredError())
-    filepath = "image2lsf_model7/image2lsf_model7-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "image2lsf_model7_normalized_dr30/image2lsf_model7_normalized_dr30-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 
     callbacks_list = [checkpoint]
-    history = test_model.fit(x=[X_lip_train, X_tongue_train], y=lsf_train, batch_size=64, epochs=1000,
+    history = test_model.fit(x=[X_lip_train, X_tongue_train], y=lsf_train, batch_size=64, epochs=200,
                              callbacks=callbacks_list,
                              validation_data=([X_lip_test, X_tongue_test], lsf_test))

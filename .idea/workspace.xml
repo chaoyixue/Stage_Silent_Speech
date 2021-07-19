@@ -49,7 +49,7 @@
       <recent name="C:\Users\chaoy\Desktop\StageSilentSpeech\Stage_Silent_Speech\two_parts_ssi_model" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_spectrum_reconstruction_by_four_inputs_predicted">
+  <component name="RunManager" selected="Python.soustraction_spectrale">
     <configuration name="image2lsf_models" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Stage_Silent_Speech" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -63,6 +63,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LSF_2021/image2lsf_models.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="soustraction_spectrale" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Stage_Silent_Speech" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LSF_2021" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LSF_2021/soustraction_spectrale.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -134,34 +155,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="transfer_autoencoder_f0_models" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Stage_Silent_Speech" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LSF_2021" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LSF_2021/transfer_autoencoder_f0_models.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.soustraction_spectrale" />
         <item itemvalue="Python.test_spectrum_reconstruction_by_four_inputs_predicted" />
         <item itemvalue="Python.test_verify_four_variables_predicted" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.image2lsf_models" />
-        <item itemvalue="Python.transfer_autoencoder_f0_models" />
       </list>
     </recent_temporary>
   </component>
@@ -202,46 +202,46 @@
     </state>
     <state x="333" y="127" width="762" height="596" key="#xdebugger.evaluate/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1619614878003" />
     <state x="452" y="0" width="854" height="824" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1624286023104" />
-    <state width="1515" height="250" key="GridCell.Tab.0.bottom" timestamp="1625759283383">
+    <state width="1515" height="204" key="GridCell.Tab.0.bottom" timestamp="1626371060450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1624473150573" />
-    <state width="1515" height="250" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1625759283383" />
-    <state width="1515" height="250" key="GridCell.Tab.0.center" timestamp="1625759283383">
+    <state width="1515" height="204" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1626371060450" />
+    <state width="1515" height="204" key="GridCell.Tab.0.center" timestamp="1626371060450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1624473150573" />
-    <state width="1515" height="250" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1625759283383" />
-    <state width="1515" height="250" key="GridCell.Tab.0.left" timestamp="1625759283383">
+    <state width="1515" height="204" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1626371060450" />
+    <state width="1515" height="204" key="GridCell.Tab.0.left" timestamp="1626371060450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1624473150573" />
-    <state width="1515" height="250" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1625759283383" />
-    <state width="1515" height="250" key="GridCell.Tab.0.right" timestamp="1625759283383">
+    <state width="1515" height="204" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1626371060450" />
+    <state width="1515" height="204" key="GridCell.Tab.0.right" timestamp="1626371060450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1624473150573" />
-    <state width="1515" height="250" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1625759283383" />
-    <state width="1515" height="250" key="GridCell.Tab.1.bottom" timestamp="1625759283383">
+    <state width="1515" height="204" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1626371060450" />
+    <state width="1515" height="250" key="GridCell.Tab.1.bottom" timestamp="1626371060446">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="229" key="GridCell.Tab.1.bottom/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1624473150565" />
-    <state width="1515" height="250" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1625759283383" />
-    <state width="1515" height="250" key="GridCell.Tab.1.center" timestamp="1625759283383">
+    <state width="1515" height="250" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1626371060446" />
+    <state width="1515" height="250" key="GridCell.Tab.1.center" timestamp="1626371060446">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="229" key="GridCell.Tab.1.center/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1624473150565" />
-    <state width="1515" height="250" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1625759283383" />
-    <state width="1515" height="250" key="GridCell.Tab.1.left" timestamp="1625759283383">
+    <state width="1515" height="250" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1626371060446" />
+    <state width="1515" height="250" key="GridCell.Tab.1.left" timestamp="1626371060446">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="229" key="GridCell.Tab.1.left/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1624473150565" />
-    <state width="1515" height="250" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1625759283383" />
-    <state width="1515" height="250" key="GridCell.Tab.1.right" timestamp="1625759283383">
+    <state width="1515" height="250" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1626371060446" />
+    <state width="1515" height="250" key="GridCell.Tab.1.right" timestamp="1626371060446">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="229" key="GridCell.Tab.1.right/0.0.1536.824/0.1080.1097.617@0.0.1536.824" timestamp="1624473150565" />
-    <state width="1515" height="250" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1625759283383" />
+    <state width="1515" height="250" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1626371060446" />
     <state x="270" y="74" key="SettingsEditor" timestamp="1621258533842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -282,11 +282,6 @@
           <url>file://$PROJECT_DIR$/two_parts_ssi_model/test_two_part_ssi_model.py</url>
           <line>64</line>
           <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/LSF_2021/test.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

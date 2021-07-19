@@ -56,6 +56,9 @@ def reconstruction_spectrum_by_four_inputs_predicted():
     print(uv_predicted.shape)
     print(energy_predicted.shape)
 
+    uv_predicted[uv_predicted >= 0.5] = 1
+    uv_predicted[uv_predicted < 0.5] = 0
+    print("aaa")
     X_f0 = np.load("../../LSF_data/f0_all_chapiter.npy")
     energy = np.load("../../LSF_data/energy_all_chapiters.npy")
     spectrum = np.load("../../data_npy_one_image/spectrogrammes_all_chapitre_corresponding.npy")
@@ -88,10 +91,10 @@ def reconstruction_spectrum_by_four_inputs_predicted():
 
     # reconstruct the wave file
     test_reconstruit = librosa.griffinlim(result, hop_length=735, win_length=735 * 2)
-    sf.write("ch7_reconstructed_total_model_lsf_0708.wav", test_reconstruit, 44100)
+    sf.write("ch7_reconstructed_total_model_lsf_0715.wav", test_reconstruit, 44100)
 
     # load the wave file produced by griffin-lim
-    wav_produced, _ = librosa.load("ch7_reconstructed_total_model_lsf_0708.wav", sr=44100)
+    wav_produced, _ = librosa.load("ch7_reconstructed_total_model_lsf_0715.wav", sr=44100)
     spectrogram_produced_griffin = np.abs(librosa.stft(wav_produced, n_fft=735 * 2, hop_length=735, win_length=735 * 2))
 
     fig, ax = plt.subplots(nrows=3)

@@ -55,7 +55,7 @@ def reconstruction_spectrum_by_four_inputs_predicted():
     print(f0_prediected.shape)
     print(uv_predicted.shape)
     print(energy_predicted.shape)
-
+    # use a threshold of 0.5 to reset the uv predicted to 0 or 1
     uv_predicted[uv_predicted >= 0.5] = 1
     uv_predicted[uv_predicted < 0.5] = 0
     print("aaa")

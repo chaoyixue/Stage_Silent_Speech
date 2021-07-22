@@ -86,6 +86,7 @@ def do_prediction_image2f0_model(path_image2f0_model):
     f0_chapiter7_predicted = image2f0_model.predict([X_lip_test, X_tongue_test])
 
     X_f0 = np.load("../../LSF_data/f0_all_chapiter.npy")
+    # denormalisation f0
     max_f0 = np.max(X_f0)
     f0_chapiter7_predicted = f0_chapiter7_predicted * max_f0
     return f0_chapiter7_predicted
@@ -110,6 +111,7 @@ def do_prediction_image2energy_model(path_image2energy_model):
     energy_chapiter7_predicted = image2energy_model.predict([X_lip_test, X_tongue_test])
     X_energy = np.load("../../LSF_data/energy_all_chapiters.npy")
     max_energy = np.max(X_energy)
+    # denormalisation
     energy_chapiter7_predicted = energy_chapiter7_predicted * max_energy
     return energy_chapiter7_predicted
 
@@ -136,6 +138,7 @@ def do_prediction_image2lsf_model(path_image2lsf_model):
     X_tongue_test = X_tongue[-nb_image_chapiter7:, :]
 
     lsf_ch7_predicted = image2lsf_model.predict([X_lip_test, X_tongue_test])
+    lsf_ch7_predicted[:, 12] = 0
     return lsf_ch7_predicted
 
 
@@ -155,15 +158,18 @@ def do_prediction_image2uv_model(path_image2uv_model):
     X_lip_test = X_lip[-nb_image_chapiter7:, :]
     X_tongue_test = X_tongue[-nb_image_chapiter7:, :]
 
-    lsf_ch7_predicted = image2uv_model.predict([X_lip_test, X_tongue_test])
-    return lsf_ch7_predicted
+    uv_ch7_predicted = image2uv_model.predict([X_lip_test, X_tongue_test])
+    # set a threshold for the voiced/unvoiced flags predicted
+    uv_ch7_predicted[uv_ch7_predicted >= 0.5] = 1
+    uv_ch7_predicted[uv_ch7_predicted < 0.5] = 0
+    return uv_ch7_predicted
 
 
 if __name__ == "__main__":
 
-    path_image2lsf_model = "C:/Users/chaoy/Desktop/StageSilentSpeech/results/week_0705/" \
-                           "models_used_for_the_reconstruction/image2lsf_model7_dr03-36-0.00491458.h5"
+    path_image2lsf_model = "../../results/week_0705/models_used_for_the_reconstruction/" \
+                           "image2lsf_model7_dr03-36-0.00491458.h5"
     lsf_npy = do_prediction_image2lsf_model(path_image2lsf_model)
-    lsf_npy[:, 12] = 0
-    io.savemat("lsf_predocted.mat", {'data': lsf_npy})
-    
+    io.savemat("lsf_predicted.mat", {'lsf_predicted': lsf_npy})
+
+

@@ -1,4 +1,4 @@
-chapiter_7_wav = audioread("chapiter7.wav");
+chapiter_7_wav = audioread("../../wav_files/chapiter7.wav");
 load('energy_all_chapiter.mat')
 load('energy_predicted.mat')
 load('f0_all_chapiter.mat')

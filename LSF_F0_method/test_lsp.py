@@ -1,3 +1,0 @@
-import librosa
-
-librosa.lpc()

@@ -170,6 +170,6 @@ if __name__ == "__main__":
     path_image2lsf_model = "../../results/week_0705/models_used_for_the_reconstruction/" \
                            "image2lsf_model7_dr03-36-0.00491458.h5"
     lsf_npy = do_prediction_image2lsf_model(path_image2lsf_model)
-    io.savemat("lsf_predicted.mat", {'lsf_predicted': lsf_npy})
+    np.save("lsf_predit_image2lsf_model7_dr03.npy", lsf_npy)
 
 

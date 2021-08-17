@@ -14,13 +14,14 @@ original_uv_ch7 = (uv_original(:,84679-15951+1:84679))';
 original_energy_ch7 = (energy_original(:,84679-15951+1:84679))';
 
 % between (n*10)s to (n+1)*10s of the chapiter 7
-n = 4; % n*10 corrrespond to the current time
+n = 25; % n*10 corrrespond to the current time
 order_lsf = 5; % the order of lsf that we wanted to observe 
 original_lsf_10s = original_lsf_ch7(n*600+1:(n+1)*600,order_lsf);
 original_f0_10s = original_f0_ch7(n*600+1:(n+1)*600,:);
 original_uv_10s = original_uv_ch7(n*600+1:(n+1)*600,:);
 original_energy_10s = original_energy_ch7(n*600+1:(n+1)*600,:);
 wav_10s = chapiter_7_wav(n*441000+1:(n+1)*441000,:);
+last_10s = chapiter_7_wav(11294750:11735750, :);
 
 % the predicted grandeurs
 lsf_predicted_10s = lsf_predicted(n*600+1:(n+1)*600,order_lsf);

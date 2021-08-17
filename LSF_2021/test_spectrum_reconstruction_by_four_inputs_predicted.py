@@ -39,6 +39,43 @@ def do_the_prediction_of_image2grandeurs(image2lsf_model, image2f0_model, image2
     return lsf_ch7_predicted, f0_ch7_predicted, uv_ch7_predicted, energy_ch7_predicted
 
 
+def do_the_prediction_of_four_grandeurs_avec_fiveimages2lsf_models(five_images_to_lsf_model, image2f0_model,
+                                                                   image2uv_model,
+                                                                   image2energy_model):
+    """
+    similaire à la fonction précédente mais cette fois on utilise un modèle cinq images au lsf
+    :param five_images_to_lsf_model:
+    :param image2f0_model:
+    :param image2uv_model:
+    :param image2energy_model:
+    :return:
+    """
+    # load images inputs
+    X_lip = np.load("../../data_npy_one_image/lips_all_chapiters.npy")
+    X_tongue = np.load("../../data_npy_one_image/tongues_all_chapiters.npy")
+    # inputs pour les modèles avec 5 images comme l'entrée
+    lip_five_images_ch7 = np.load("../../validation_data/lips_validation_ch7.npy")
+    tongue_five_images_ch7 = np.load("../../validation_data/tongues_validation_ch7.npy")
+
+    # normalisation
+    X_lip = X_lip / 255.0
+    X_tongue = X_tongue / 255.0
+    lip_five_images_ch7 = lip_five_images_ch7 / 255.0
+    tongue_five_images_ch7 = tongue_five_images_ch7 / 255.0
+
+    # split the testing part(ch7)
+    nb_image_chapiter7 = 15951
+    X_lip_test = X_lip[-nb_image_chapiter7:, :]
+    X_tongue_test = X_tongue[-nb_image_chapiter7:, :]
+    # only 15947 values, the first and the last two values are removed
+    lsf_ch7_predicted = five_images_to_lsf_model.predict([lip_five_images_ch7, tongue_five_images_ch7])
+    f0_ch7_predicted = image2f0_model.predict([X_lip_test, X_tongue_test])[2:-2]  # 15951 to 15947
+    uv_ch7_predicted = image2uv_model.predict([X_lip_test, X_tongue_test])[2:-2]
+    energy_ch7_predicted = image2energy_model.predict([X_lip_test, X_tongue_test])[2:-2]
+
+    return lsf_ch7_predicted, f0_ch7_predicted, uv_ch7_predicted, energy_ch7_predicted
+
+
 def reconstruction_spectrum_by_four_inputs_predicted():
     tr_ae_lsf_model = keras.models.load_model("../../results/week_0705/image2lsf_model7_dr03-36-0.00491458.h5")
     tr_ae_f0_model = keras.models.load_model("../../results/week_0622/transfer_autoencoder_f0_model1-10-0.03161320.h5")
@@ -95,6 +132,79 @@ def reconstruction_spectrum_by_four_inputs_predicted():
 
     # load the wave file produced by griffin-lim
     wav_produced, _ = librosa.load("ch7_reconstructed_total_model_lsf_0715.wav", sr=44100)
+    spectrogram_produced_griffin = np.abs(librosa.stft(wav_produced, n_fft=735 * 2, hop_length=735, win_length=735 * 2))
+
+    fig, ax = plt.subplots(nrows=3)
+    img = librosa.display.specshow(librosa.amplitude_to_db(np.matrix.transpose(y_test),
+                                                           ref=np.max), sr=44100, hop_length=735,
+                                   y_axis='linear', x_axis='time', ax=ax[0])
+    ax[0].set_title('original spectrum')
+    librosa.display.specshow(librosa.amplitude_to_db(result, ref=np.max), sr=44100, hop_length=735,
+                             y_axis='linear', x_axis='time', ax=ax[1])
+    ax[1].set_title('spectrum learned')
+    librosa.display.specshow(librosa.amplitude_to_db(spectrogram_produced_griffin, ref=np.max),
+                             sr=44100, hop_length=735, y_axis='linear', x_axis='time', ax=ax[2])
+    ax[2].set_title('spectrum reproduced griffinlim')
+    fig.colorbar(img, ax=ax, format="%+2.0f dB")
+    plt.show()
+
+
+def reconstruction_spectrum_four_inputs_five_images_lsf_models():
+    tr_ae_lsf_model = keras.models.load_model("../../results/week_0808/five_images_to_LSF_model1-18-0.00485579.h5")
+    tr_ae_f0_model = keras.models.load_model("../../results/week_0622/transfer_autoencoder_f0_model1-10-0.03161320.h5")
+    tr_ae_uv_model = keras.models.load_model("../../results/week_0622/transfer_autoencoder_uv_model1-09-0.865.h5")
+    tr_ae_energy_model = keras.models.load_model("../../results/week_0622/"
+                                                 "transfer_autoencoder_energy_model6_dr03-06-0.01141086.h5")
+    # predict the four variables using the pretrained models
+    lsf_predicted, f0_prediected, uv_predicted, energy_predicted = \
+        do_the_prediction_of_four_grandeurs_avec_fiveimages2lsf_models \
+            (tr_ae_lsf_model, tr_ae_f0_model, tr_ae_uv_model, tr_ae_energy_model)
+    print("aaa")
+    print(lsf_predicted.shape)
+    print(f0_prediected.shape)
+    print(uv_predicted.shape)
+    print(energy_predicted.shape)
+
+    # use a threshold of 0.5 to reset the uv predicted to 0 or 1
+    uv_predicted[uv_predicted >= 0.5] = 1
+    uv_predicted[uv_predicted < 0.5] = 0
+
+    X_f0 = np.load("../../LSF_data/f0_all_chapiter.npy")
+    energy = np.load("../../LSF_data/energy_all_chapiters.npy")
+    spectrum = np.load("../../data_npy_one_image/spectrogrammes_all_chapitre_corresponding.npy")
+    max_spectrum = np.max(spectrum)
+    spectrum = spectrum / max_spectrum
+    spectrum = np.matrix.transpose(spectrum)
+    y_test = spectrum[-15949:-2]
+
+    # calculate the maximum value of the original data to be used during denormalisation
+    max_f0 = np.max(X_f0)
+    max_energy = np.max(energy)
+
+    # denormalisation
+    f0_prediected = f0_prediected * max_f0
+    energy_predicted = energy_predicted * max_energy
+
+    # the 13th, which is the last coefficient of the lsf reset to zero
+    lsf_predicted[:, 12] = 0
+
+    # load the energy_lsf_spectrum model used
+    mymodel = keras.models.load_model("C:/Users/chaoy/Desktop/StageSilentSpeech/results/week_0607/"
+                                      "energy_lsf_spectrum_model2-667-0.00000845.h5")
+
+    test_result = mymodel.predict([lsf_predicted, f0_prediected, uv_predicted, energy_predicted])
+    result = np.matrix.transpose(test_result)
+    mse = tf.keras.losses.MeanSquaredError()
+    error = mse(y_test, test_result).numpy()
+    print("mean squared error between the spectrum predicted and the original spectrum : %8f" % error)
+    result = result * max_spectrum
+
+    # reconstruct the wave file
+    test_reconstruit = librosa.griffinlim(result, hop_length=735, win_length=735 * 2)
+    sf.write("ch7_reconstructed_total_model_5imageslsf_0808.wav", test_reconstruit, 44100)
+
+    # load the wave file produced by griffin-lim
+    wav_produced, _ = librosa.load("ch7_reconstructed_total_model_5imageslsf_0808.wav", sr=44100)
     spectrogram_produced_griffin = np.abs(librosa.stft(wav_produced, n_fft=735 * 2, hop_length=735, win_length=735 * 2))
 
     fig, ax = plt.subplots(nrows=3)
@@ -261,5 +371,4 @@ def reconstruction_spectrum_original_lsf_f0():
 
 
 if __name__ == "__main__":
-    reconstruction_spectrum_by_four_inputs_predicted()
-
+    reconstruction_spectrum_four_inputs_five_images_lsf_models()

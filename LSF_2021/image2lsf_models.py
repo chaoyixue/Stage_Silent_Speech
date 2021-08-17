@@ -266,9 +266,9 @@ if __name__ == "__main__":
     X_tongue = X_tongue / 255.0
 
     # add the normalization of lsf values
-    max_lsf = np.max(lsf_original)
-    lsf_original = lsf_original/max_lsf
-    print("the maximum lsf value %f :" % max_lsf)
+    # max_lsf = np.max(lsf_original)
+    # lsf_original = lsf_original/max_lsf
+    # print("the maximum lsf value %f :" % max_lsf)
     # split train test data
     nb_image_chapiter7 = 15951
     X_lip_train = X_lip[:-nb_image_chapiter7, :]

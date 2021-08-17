@@ -32,7 +32,7 @@ if __name__ == "__main__":
     y_test = np.matrix.transpose(y_test)
 
     model = keras.models.load_model("../ssi_model1_val_loss-0.00004934.h5")
-    test_result = model.predict([lips_x_test, tongues_x_test])
+    test_result = model.predict([lips_x_test, tongues_x_test])  # 15951,736
     result = np.matrix.transpose(test_result)
 
     result = result * max_spectrum

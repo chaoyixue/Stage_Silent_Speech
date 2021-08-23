@@ -1,6 +1,7 @@
 import numpy as np
 import librosa
 import soundfile as sf
+from scipy.io import loadmat
 
 
 def couper_echantillons_son_au_nombre_images(fichier_origine, nb_images):
@@ -31,7 +32,20 @@ def convert_wav_to_spectrum(wavfile, nfft=735*2, window_length=735*2, hop_length
     return spectrogram_y
 
 
+def convert_mat_to_npy(path_mat):
+    dict_mat = loadmat(path_mat)
+    print(type(dict_mat))
+    print(dict_mat.keys())
+    npy_lsp = dict_mat["lsp_cut_all"]
+    print(npy_lsp.shape)
+    return npy_lsp
+
+
 if __name__ == "__main__":
+    path = "../../LSF_data_coupe/lsp_cut_all.mat"
+    npy_lsp_coupe = convert_mat_to_npy(path)
+    np.save("../../LSF_data_coupe/lsp_cut_all.npy", npy_lsp_coupe)
+    """
     # couper les chapitres pour mettre en correspondance avec le nombre d'images
     chapitre1, _ = librosa.load("../../wav_files/chapiter1.wav", sr=44100)
     ch1_coupe = couper_echantillons_son_au_nombre_images(chapitre1, 10054)
@@ -54,6 +68,7 @@ if __name__ == "__main__":
     chapitre7, _ = librosa.load("../../wav_files/chapiter7.wav", sr=44100)
     ch7_coupe = couper_echantillons_son_au_nombre_images(chapitre7, 15951)
     """
+    """
     # calculation des spectrogrammes
     spect_ch1 = convert_wav_to_spectrum(ch1_coupe)[:, :-1]
     spect_ch2 = convert_wav_to_spectrum(ch2_coupe)[:, :-1]
@@ -69,6 +84,8 @@ if __name__ == "__main__":
     validation_spectrum = np.transpose(spect_ch7)
     np.save("validation_spectrum_coupe.npy", validation_spectrum)
     """
+
+    """
     # save the wave files preprocessed
     sf.write("../../wav_files_coupe/ch1_coupe.wav", ch1_coupe, 44100)
     sf.write("../../wav_files_coupe/ch2_coupe.wav", ch2_coupe, 44100)
@@ -77,4 +94,6 @@ if __name__ == "__main__":
     sf.write("../../wav_files_coupe/ch5_coupe.wav", ch5_coupe, 44100)
     sf.write("../../wav_files_coupe/ch6_coupe.wav", ch6_coupe, 44100)
     sf.write("../../wav_files_coupe/ch7_coupe.wav", ch7_coupe, 44100)
+    """
+
 

@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     chapitre7, _ = librosa.load("../../wav_files/chapiter7.wav", sr=44100)
     ch7_coupe = couper_echantillons_son_au_nombre_images(chapitre7, 15951)
-
+    """
     # calculation des spectrogrammes
     spect_ch1 = convert_wav_to_spectrum(ch1_coupe)[:, :-1]
     spect_ch2 = convert_wav_to_spectrum(ch2_coupe)[:, :-1]
@@ -68,4 +68,13 @@ if __name__ == "__main__":
     print(result.shape)
     validation_spectrum = np.transpose(spect_ch7)
     np.save("validation_spectrum_coupe.npy", validation_spectrum)
-    
+    """
+    # save the wave files preprocessed
+    sf.write("../../wav_files_coupe/ch1_coupe.wav", ch1_coupe, 44100)
+    sf.write("../../wav_files_coupe/ch2_coupe.wav", ch2_coupe, 44100)
+    sf.write("../../wav_files_coupe/ch3_coupe.wav", ch3_coupe, 44100)
+    sf.write("../../wav_files_coupe/ch4_coupe.wav", ch4_coupe, 44100)
+    sf.write("../../wav_files_coupe/ch5_coupe.wav", ch5_coupe, 44100)
+    sf.write("../../wav_files_coupe/ch6_coupe.wav", ch6_coupe, 44100)
+    sf.write("../../wav_files_coupe/ch7_coupe.wav", ch7_coupe, 44100)
+

@@ -17,8 +17,4 @@ function lsp_matrix = func_lsf_coefficient(filepath)
         sig = y(ind).*w;
         lsp_matrix(1:nbpar,k) = poly2lsf(lpc(sig,nbpar));
     end
-    
-
-    
-
 end

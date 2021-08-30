@@ -42,9 +42,10 @@ def image2f0_model1():
 
 
 if __name__ == "__main__":
+    # les données f0 utilisé ici sont les données réorganisées
     X_lip = np.load("lips_all_chapiters.npy")
     X_tongue = np.load("tongues_all_chapiters.npy")
-    f0_original = np.load("f0_all_chapiter.npy")
+    f0_original = np.load("uv_cut_all.npy")
 
     # normalisation
     X_lip = X_lip / 255.0
@@ -55,17 +56,17 @@ if __name__ == "__main__":
 
     # split train test data
     nb_image_chapiter7 = 15951
-    X_lip_train = X_lip[:-nb_image_chapiter7, :]
-    X_lip_test = X_lip[-nb_image_chapiter7:, :]
-    X_tongue_train = X_tongue[:-nb_image_chapiter7, :]
-    X_tongue_test = X_tongue[-nb_image_chapiter7:, :]
+    X_lip_train = X_lip[:-nb_image_chapiter7]
+    X_lip_test = X_lip[-nb_image_chapiter7:]
+    X_tongue_train = X_tongue[:-nb_image_chapiter7]
+    X_tongue_test = X_tongue[-nb_image_chapiter7:]
     f0_train = f0_original[:-nb_image_chapiter7]
     f0_test = f0_original[-nb_image_chapiter7:]
 
     test_model = image2f0_model1()
     my_optimizer = keras.optimizers.Adam(learning_rate=0.0001, epsilon=1e-8)
     test_model.compile(optimizer=my_optimizer, loss=tf.keras.losses.MeanSquaredError())
-    filepath = "image2f0_model1_dr50/image2f0_model1_dr50-{epoch:02d}-{val_loss:.8f}.h5"
+    filepath = "image2f0_data_coupe_model1/image2f0_data_coupe_model1-{epoch:02d}-{val_loss:.8f}.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1,
                                  save_best_only=True, mode='auto')  # only save improved accuracy model
 

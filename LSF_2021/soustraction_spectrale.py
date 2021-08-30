@@ -4,7 +4,7 @@ import soundfile as sf
 from matplotlib import pyplot as plt
 import librosa.display
 if __name__ == "__main__":
-    y, _ = librosa.load("ch7_reconstructed_total_model_lsf_0715.wav", sr=44100)
+    y, _ = librosa.load("../../results/week_0816/ch7_0816_data_coupe.wav", sr=44100)
     module = np.abs(librosa.stft(y, n_fft=735*2, hop_length=735, win_length=735*2))
     phase = np.angle(librosa.stft(y, n_fft=735*2, hop_length=735, win_length=735*2))
     # calculate the mean value of the first tenth frames
@@ -14,7 +14,7 @@ if __name__ == "__main__":
         new_module[:, i] = module[:, i] - spectral_bruit
     tf_reconstruit = new_module * np.exp(phase*1j)
     yvect = librosa.istft(tf_reconstruit, hop_length=735, win_length=735*2)
-    # sf.write("wave_reconstruit_soustraction_spectrale.wav", yvect, samplerate=44100)
+    sf.write("ch7_0816_data_coupe_soustrait_spectrale.wav", yvect, samplerate=44100)
     fig, ax = plt.subplots(nrows=2)
     img = librosa.display.specshow(librosa.amplitude_to_db(module,
                                                            ref=np.max), sr=44100, hop_length=735,

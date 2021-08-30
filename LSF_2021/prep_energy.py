@@ -16,11 +16,11 @@ def convert_wav_to_energy(file_path, sample_rate=44100, window_length=735*2, hop
     :return:
     """
     y, sr = librosa.load(file_path, sr=sample_rate)  # load the wav file with the sample rate chosen
-    energy_matrix = librosa.feature.rms(y, frame_length= window_length, hop_length=hop_length)
+    energy_matrix = librosa.feature.rms(y, frame_length=window_length, hop_length=hop_length)
     return energy_matrix
 
 
-if __name__ == "__main__":
+def all_chapiter_wav_to_energy():
     filepath_ch1 = "../../wav_files/chapiter1.wav"
     spect_ch1 = convert_wav_to_energy(filepath_ch1)
     spect_ch1 = spect_ch1[:, :10054]
@@ -52,3 +52,34 @@ if __name__ == "__main__":
     # axis 0 is the frequency axis corresponding to 736 bins of frequency. axis 1 is the time
     # axis corresponding to seconds
     np.save("matrix_energy_all_chapiters.npy", result)
+
+
+if __name__ == "__main__":
+    # calculation matrice d'énergie à partir des fichiers audio coupé
+    filepath_ch1 = "../../wav_files_coupe/ch1_coupe.wav"
+    spect_ch1 = convert_wav_to_energy(filepath_ch1)[:, :-1]
+
+    filepath_ch2 = "../../wav_files_coupe/ch2_coupe.wav"
+    spect_ch2 = convert_wav_to_energy(filepath_ch2)[:, :-1]
+
+    filepath_ch3 = "../../wav_files_coupe/ch3_coupe.wav"
+    spect_ch3 = convert_wav_to_energy(filepath_ch3)[:, :-1]
+
+    filepath_ch4 = "../../wav_files_coupe/ch4_coupe.wav"
+    spect_ch4 = convert_wav_to_energy(filepath_ch4)[:, :-1]
+
+    filepath_ch5 = "../../wav_files_coupe/ch5_coupe.wav"
+    spect_ch5 = convert_wav_to_energy(filepath_ch5)[:, :-1]
+
+    filepath_ch6 = "../../wav_files_coupe/ch6_coupe.wav"
+    spect_ch6 = convert_wav_to_energy(filepath_ch6)[:, :-1]
+
+    filepath_ch7 = "../../wav_files_coupe/ch7_coupe.wav"
+    spect_ch7 = convert_wav_to_energy(filepath_ch7)[:, :-1]
+
+    result = np.concatenate((spect_ch1, spect_ch2, spect_ch3, spect_ch4, spect_ch5, spect_ch6, spect_ch7), axis=1)
+    result = np.transpose(result)
+    print(result.shape)
+    # axis 0 is the frequency axis corresponding to 736 bins of frequency. axis 1 is the time
+    # axis corresponding to seconds
+    np.save("../../LSF_data_coupe/energy_cut_all.npy", result)

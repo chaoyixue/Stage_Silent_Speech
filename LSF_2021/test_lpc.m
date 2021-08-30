@@ -1,19 +1,27 @@
-y = audioread("../../wav_files/chapiter7.wav");
+y = audioread("../../wav_files_coupe/ch7_coupe.wav");
 
 % nbpar the order of the lpc coefficients
 nbpar = 12;
-dfen = 735;
-w = hanning(dfen);
+% longeur de la fenêtre 
+dfen = 735*2;
+% longeur de saut
+hop_length = 735;
+
 duree = length(y);
-nbfen = ceil(duree/dfen);
+nbfen = fix(duree/hop_length);
 % initalisation of the matrix used to save lsp values
-datalpc=zeros(nbpar+1,nbfen);
+datalsf=zeros(nbpar,nbfen);
 
 for k = 1:nbfen
-    % fix 朝0方向的取整
-    ind = ((k-1)*dfen+1:k*dfen);
+    if  (k-1)*hop_length+dfen < duree
+        ind = ((k-1)*hop_length+1:(k-1)*hop_length+dfen);
+    else
+        ind = ((k-1)*hop_length+1:duree);
+    end
     % window hanning
+    w = hanning(length(ind));
     sig = y(ind).*w;
-    datalpc(1:nbpar+1,k) = lpc(sig,nbpar);
+    datalsf(1:nbpar,k) = poly2lsf(lpc(sig,nbpar));
+    
 end
 
